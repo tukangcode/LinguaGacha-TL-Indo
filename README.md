@@ -10,7 +10,7 @@
 ## 概述 📢
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) (/ˈlɪŋɡwə ˈɡɑːtʃə/)，简称 `LG`，使用 AI 技术次世代文本翻译器
 - 支持 `中` `英` `日` `韩` `俄` 等多种语言的一键互译
-- 支持 纯文本、小说*、字幕*、游戏文本 等多种文本格式
+- 支持 纯文本、小说、字幕、游戏文本 等多种文本格式
 - 支持 `Claude`、`ChatGTP`、`DeepSeek`、`SakuraLLM` 等各种本地或在线接口
 - Less is More，更少的设置选项，更好的默认设置，减少烧脑的功能逻辑与设置，开箱即用！
 
@@ -34,18 +34,18 @@
 - 大部分主流的 `小说` 和 `游戏脚本` 数据格式都可以直接或者通过转换被 `LG` 识别
   - 包括但是不限于
     - 纯文本（.txt）
+    - SRT 字幕（.srt）
     - [MTool](https://afdian.com/a/AdventCirno) 导出游戏文本（.json）
     - [SExtractor](https://github.com/satan53x/SExtractor) 导出游戏文本（.txt .json .xlsx）
     - [Translator++](https://dreamsavior.net/translator-plusplus/) 导出游戏文本（.xlsx）
   - 更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
-- 20250207 v0.1.2
-  - 多处 `UI` 与 `交互` 逻辑优化
+- 20250207 v0.1.3
+  - 多处 `UI` 与 `交互` 逻辑优化，包括但是不限于：
     - 支持混合文件格式翻译
     - 支持同时创建多个相同平台接口
     - 支持直接在 `译前替换` 页面导入 `Actor.json` 文件
-    - ... ...
   - 显著提升了 `换行符` 与 `代码段` 的保留率
     - 得以于此，`翻译速度` 和 `Token 消耗` 也得到了优化
   - 显著提升了思考模型（如 `DeepSeek-R1` ）的翻译效果
@@ -61,5 +61,5 @@
 
 ## 开发计划 📈
 - [ ] 简繁转换
-- [ ] 支持 .srt 等字幕文件
+- [x] 支持 .srt 等字幕文件
 - [ ] 支持 .epub 等电子书文件
