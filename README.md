@@ -20,6 +20,7 @@
 
 ## 配置要求 🖥️
 - 任意兼容 `OpenAI` `Google` `Anthropic` `SakuraLLM` 标准的 AI 大模型接口
+- 也可以使用 [本地模型一键包](https://github.com/neavo/OneClickLLAMA) 来获取完全免费的服务（* 需至少 8G 显存的独立显卡，Nvidia 显卡最佳）
 
 ## 使用流程 🛸
 - 从 [发布页](https://github.com/neavo/LinguaGacha/releases) 下载应用
