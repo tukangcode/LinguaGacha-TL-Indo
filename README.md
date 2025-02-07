@@ -10,8 +10,8 @@
 ## 概述 📢
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) (/ˈlɪŋɡwə ˈɡɑːtʃə/)，简称 `LG`，使用 AI 技术次世代文本翻译器
 - 支持 `中` `英` `日` `韩` `俄` 等多种语言的一键互译
+- 支持 纯文本、小说*、字幕*、游戏文本 等多种文本格式
 - 支持 `Claude`、`ChatGTP`、`DeepSeek`、`SakuraLLM` 等各种本地或在线接口
-- 支持 纯文本（.txt）、游戏脚本（[MTool](https://afdian.com/a/AdventCirno)、[Translator++](https://dreamsavior.net/translator-plusplus/)）等多种文本格式
 - Less is More，更少的设置选项，更好的默认设置，减少烧脑的功能逻辑与设置，开箱即用！
 
 ## 特别说明 ⚠️
@@ -34,11 +34,12 @@
   - 包括但是不限于
     - 纯文本（.txt）
     - [MTool](https://afdian.com/a/AdventCirno) 导出游戏文本（.json）
+    - [SExtractor](https://github.com/satan53x/SExtractor) 导出游戏文本（.txt .json .xlsx）
     - [Translator++](https://dreamsavior.net/translator-plusplus/) 导出游戏文本（.xlsx）
-  - 更多格式将持续添加，具体可见 [支持的文件格式](https://github.com/neavo/KeywordGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，你可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出需求
+  - 更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
-- 20250207 v0.1.1
+- 20250207 v0.1.2
   - 多处 `UI` 与 `交互` 逻辑优化
     - 支持混合文件格式翻译
     - 支持同时创建多个相同平台接口
@@ -51,10 +52,11 @@
  
 ## 常见问题 📥
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系
-  - `LG` 是在 `AiNiee v5` 版本的基础上进行重构的全新翻译器应用
-  - 如果说 `AiNiee v5` 是一台功能强大但是调教繁琐的安卓手机，那么 `LG` 就是一台开箱即用的苹果手机
-  - `LG` 诞生的初衷就是希望可以满足不同用户的需求
-  - `LG` 的作者也是 `AiNiee v5` 的主要开发与维护者之一
+  - `LinguaGacha` 是在 `AiNiee v5` 版本的基础上进行重构的全新翻译器应用
+    - 如果说 `AiNiee v5` 是一台功能强大但是需要调教的安卓手机
+    - 那么 `LinguaGacha` 就是一台的苹果手机，开箱即用，无需设置，快速且优质
+  - `LinguaGacha` 诞生的初衷就是希望可以满足不同用户的需求
+  - `LinguaGacha` 的作者也是 `AiNiee v5` 的主要开发与维护者之一
 
 ## 开发计划 📈
 - [ ] 简繁转换
