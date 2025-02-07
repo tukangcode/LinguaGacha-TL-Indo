@@ -38,7 +38,7 @@
   - 更多格式将持续添加，具体可见 [支持的文件格式](https://github.com/neavo/KeywordGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，你可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出需求
 
 ## 近期更新 📅
-- 20250207 v0.1.0
+- 20250207 v0.1.1
   - 多处 `UI` 与 `交互` 逻辑优化
     - 支持混合文件格式翻译
     - 支持同时创建多个相同平台接口
