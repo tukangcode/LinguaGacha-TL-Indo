@@ -358,12 +358,13 @@ class TextHelper:
             pass
 
         # 否则使用正则表达式匹配
-        if len(result) == 0:
+        if len(result) == 0 or not isinstance(result, dict):
+            result = {}
             for item in re.findall(r"['\"].+?['\"]\s*\:\s*['\"].+?['\"]\s*(?=[,}])", json_str, flags = re.IGNORECASE):
                 p = item.split(":")
                 result[p[0].strip().strip("'\"").strip()] = p[1].strip().strip("'\"").strip()
 
-        return result
+        return result if isinstance(result, dict) else {}
 
     # 安全加载 JSON 列表
     def safe_load_json_list(json_str: str) -> list:
@@ -382,8 +383,9 @@ class TextHelper:
             pass
 
         # 否则使用正则表达式匹配
-        if len(result) == 0:
+        if len(result) == 0 or not isinstance(result, list):
+            result = []
             for item in re.findall(r"\{.+?\}", json_str, flags = re.IGNORECASE):
                 result.append(TextHelper.safe_load_json_dict(item))
 
-        return result
+        return result if isinstance(result, list) else {}

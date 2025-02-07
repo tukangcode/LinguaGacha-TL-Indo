@@ -197,7 +197,7 @@ class Translator(Base):
             tasks: list[TranslatorTask] = []
             self.print("")
             for chunk in tqdm(chunks, desc = "生成翻译任务", total = len(chunks)):
-                tasks.append(TranslatorTask(self.config, self.platform, chunk))
+                tasks.append(TranslatorTask(self.config, self.platform, chunk, current_round))
             self.print("")
 
             # 输出开始翻译的日志
@@ -309,11 +309,12 @@ class Translator(Base):
     # 检查结果并写入文件
     def check_and_wirte_result(self) -> None:
         # 清理一下
-        [
-            os.remove(entry.path)
-            for entry in os.scandir("output")
-            if entry.is_file() and "结果检查_" in entry.path
-        ]
+        if os.path.isdir(self.config.get("output_folder")) == True:
+            [
+                os.remove(entry.path)
+                for entry in os.scandir(self.config.get("output_folder"))
+                if entry.is_file() and "结果检查_" in entry.path
+            ]
 
         # 检查结果
         result_check = ResultChecker(self.config, self.cache_manager.get_items())

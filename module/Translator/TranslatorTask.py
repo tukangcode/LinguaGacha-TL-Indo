@@ -18,13 +18,14 @@ from module.PunctuationHelper import PunctuationHelper
 
 class TranslatorTask(Base):
 
-    def __init__(self, config: dict, platform: dict, items: list[CacheItem]) -> None:
+    def __init__(self, config: dict, platform: dict, items: list[CacheItem], current_round: int) -> None:
         super().__init__()
 
         # 初始化
         self.items = items
         self.config = config
         self.platform = platform
+        self.current_round = current_round
         self.code_saver = CodeSaver(self.config)
         self.response_checker = ResponseChecker(self.config)
 
@@ -64,7 +65,7 @@ class TranslatorTask(Base):
             return {}
 
         # 发起请求
-        requester = TranslatorRequester(self.config, self.platform)
+        requester = TranslatorRequester(self.config, self.platform, self.current_round)
         skip, response_think, response_result, prompt_tokens, completion_tokens = requester.request(self.messages)
 
         # 如果请求结果标记为 skip，即有错误发生，则跳过本次循环

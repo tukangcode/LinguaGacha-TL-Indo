@@ -10,9 +10,9 @@ class CacheItem(BaseData):
     class FileType():
 
         TXT: str = "TXT"
-        TPP: str = "TPP"
-        MTOOL: str = "MTOOL"
-
+        TPP: str = "TPP"                                # Translator++
+        KVJSON: str = "KVJSON"                          # MTool
+        MESSAGEJSON: str = "MESSAGEJSON"                # SExtractor
 
     def __init__(self, args: dict) -> None:
         super().__init__()
@@ -20,6 +20,8 @@ class CacheItem(BaseData):
         # 默认值
         self.src: str = ""                                              # 原文
         self.dst: str = ""                                              # 译文
+        self.extra_field_src: str = ""                                  # 额外字段原文，MESSAGEJSON - name
+        self.extra_field_dst: str = ""                                  # 额外字段译文，MESSAGEJSON - name
         self.row: int = 0                                               # 在原始文件中的行号
         self.file_type: str = ""                                        # 原始文件的类型
         self.file_path: str = ""                                        # 原始文件的相对路径
@@ -59,6 +61,26 @@ class CacheItem(BaseData):
                 self.dst = dst
             else:
                 self.dst = str(dst)
+
+    # 获取额外字段原文
+    def get_extra_field_src(self) -> str:
+        with self.lock:
+            return self.extra_field_src
+
+    # 设置额外字段原文
+    def set_extra_field_src(self, extra_field_src: str) -> None:
+        with self.lock:
+            self.extra_field_src = extra_field_src
+
+    # 获取额外字段译文
+    def get_extra_field_dst(self) -> str:
+        with self.lock:
+            return self.extra_field_dst
+
+    # 设置额外字段译文
+    def set_extra_field_dst(self, extra_field_dst: str) -> None:
+        with self.lock:
+            self.extra_field_dst = extra_field_dst
 
     # 获取行号
     def get_row(self) -> int:

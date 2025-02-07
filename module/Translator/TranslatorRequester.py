@@ -13,19 +13,20 @@ class TranslatorRequester(Base):
     # 类线程锁
     API_KEY_LOCK = threading.Lock()
 
-    def __init__(self, config: dict, platform: dict) -> None:
+    def __init__(self, config: dict, platform: dict, current_round: int) -> None:
         super().__init__()
 
         # 初始化
         self.config = config
         self.platform = platform
+        self.current_round = current_round
 
     # 发起请求
     def request(self, messages: list[dict]) -> tuple[bool, str, int, int]:
         temperature = self.platform.get("temperature")
         top_p = self.platform.get("top_p")
         presence_penalty = self.platform.get("presence_penalty")
-        frequency_penalty = self.platform.get("frequency_penalty")
+        frequency_penalty = self.platform.get("frequency_penalty") if self.current_round == 0 else max(0.20, self.platform.get("frequency_penalty"))
 
         # 发起请求
         if self.platform.get("api_format") == "SakuraLLM":
