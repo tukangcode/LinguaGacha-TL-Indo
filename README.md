@@ -11,8 +11,10 @@
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) (/ˈlɪŋɡwə ˈɡɑːtʃə/)，简称 `LG`，使用 AI 技术次世代文本翻译器
 - 支持 `中` `英` `日` `韩` `俄` 等多种语言的一键互译
 - 支持 纯文本、小说、字幕、游戏文本 等多种文本格式
-- 支持 `Claude`、`ChatGTP`、`DeepSeek`、`SakuraLLM` 等各种本地或在线接口
+- 支持 `Claude`、`ChatGPT`、`DeepSeek`、`SakuraLLM` 等各种本地或在线接口
 - Less is More，更少的设置选项，更好的默认设置，减少烧脑的功能逻辑与设置，开箱即用！
+
+> ![sample_01](https://github.com/user-attachments/assets/dce4243a-2f4a-444b-a337-8d6c005790b9)
 
 ## 特别说明 ⚠️
 - 如您在翻译过程中使用了 [LinguaGacha](https://github.com/neavo/LinguaGacha) ，请在作品信息或发布页面的显要位置进行说明！
@@ -33,15 +35,21 @@
 - `LG` 将在任务开始时扫描输入文件夹及其子文件夹找到所有支持格式的文件
 - 大部分主流的 `小说` 和 `游戏脚本` 数据格式都可以直接或者通过转换被 `LG` 识别
   - 包括但是不限于
-    - 纯文本（.txt）
-    - SRT 字幕（.srt）
+    - 字幕（.srt）
+    - 电子书（.txt .epub）
     - [MTool](https://afdian.com/a/AdventCirno) 导出游戏文本（.json）
     - [SExtractor](https://github.com/satan53x/SExtractor) 导出游戏文本（.txt .json .xlsx）
     - [Translator++](https://dreamsavior.net/translator-plusplus/) 导出游戏文本（.xlsx）
   - 更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
-- 20250207 v0.1.4
+- 20250208 v0.2.0
+  - 新增 支持 .epub 文件
+  - 新增 繁体输出功能
+  - 新增 字幕与电子书支持双语对照
+  - 其他优化与修复
+
+- 20250207 v0.1.5
   - 多处 `UI` 与 `交互` 逻辑优化，包括但是不限于：
     - 支持混合文件格式翻译
     - 支持同时创建多个相同平台接口
@@ -60,6 +68,6 @@
   - `LinguaGacha` 的作者也是 `AiNiee v5` 的主要开发与维护者之一
 
 ## 开发计划 📈
-- [ ] 简繁转换
+- [x] 简繁转换
 - [x] 支持 .srt 等字幕文件
-- [ ] 支持 .epub 等电子书文件
+- [x] 支持 .epub 等电子书文件
