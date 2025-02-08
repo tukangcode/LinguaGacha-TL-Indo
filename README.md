@@ -10,7 +10,7 @@
 ## 概述 📢
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) (/ˈlɪŋɡwə ˈɡɑːtʃə/)，简称 `LG`，使用 AI 技术次世代文本翻译器
 - 支持 `中` `英` `日` `韩` `俄` 等多种语言的一键互译
-- 支持 纯文本、小说、字幕、游戏文本 等多种文本格式
+- 支持 小说、字幕、游戏文本 等多种文本类型与文本格式
 - 支持 `Claude`、`ChatGPT`、`DeepSeek`、`SakuraLLM` 等各种本地或在线接口
 - Less is More，更少的设置选项，更好的默认设置，减少烧脑的功能逻辑与设置，开箱即用！
 
@@ -35,14 +35,18 @@
 - `LG` 将在任务开始时扫描输入文件夹及其子文件夹找到所有支持格式的文件
 - 大部分主流的 `小说` 和 `游戏脚本` 数据格式都可以直接或者通过转换被 `LG` 识别
   - 包括但是不限于
-    - 字幕（.srt）
+    - 字幕（.srt .ass）
     - 电子书（.txt .epub）
+    - [RenPy](https://www.renpy.org/) 导出游戏文本（.rpy）
     - [MTool](https://afdian.com/a/AdventCirno) 导出游戏文本（.json）
     - [SExtractor](https://github.com/satan53x/SExtractor) 导出游戏文本（.txt .json .xlsx）
     - [Translator++](https://dreamsavior.net/translator-plusplus/) 导出游戏文本（.xlsx）
   - 更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250208 v0.3.0
+  - 新增 - 支持 [RenPy](https://www.renpy.org/) 导出游戏文本（.rpy）
+
 - 20250208 v0.2.1
   - 新增 繁体输出功能
   - 新增 支持 .ass 字幕
