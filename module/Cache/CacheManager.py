@@ -140,17 +140,20 @@ class CacheManager(Base):
 
     # 生成缓存数据条目片段
     def generate_item_chunks(self, limit: int) -> list[list[CacheItem]]:
+        # 根据 Token 阈值计算行数阈值，避免大量短句导致行数太多
+        line_limit = max(8, int(limit / 16))
+
         chunk: list[CacheItem] = []
         chunks: list[list[CacheItem]] = []
         chunk_length: int = 0
         for item in [v for v in self.items if v.get_status() == Base.TranslationStatus.UNTRANSLATED]:
             current_length = item.get_token_count()
-            if (
-                # 首先，每个片段的第一条不判断是否超限，以避免特别长的文本导致死循环
-                len(chunk) > 0
-                # 然后，如果 累计长度超限 或者 数据来源跨文件，则结束此片段
-                and (chunk_length + current_length > limit or item.get_file_path() != chunk[-1].get_file_path())
-            ):
+
+            # 每个片段的第一条不判断是否超限，以避免特别长的文本导致死循环
+            if len(chunk) == 0:
+                pass
+            # 如果 Token/行数 超限 或 数据来源跨文件，则结束此片段
+            elif chunk_length + current_length > limit or len(chunk) >= line_limit or item.get_file_path() != chunk[-1].get_file_path():
                 chunks.append(chunk)
 
                 chunk = []

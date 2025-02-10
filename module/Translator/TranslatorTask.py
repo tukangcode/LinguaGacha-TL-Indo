@@ -22,14 +22,13 @@ class TranslatorTask(Base):
     # 类变量
     OPENCC = opencc.OpenCC("s2t")
 
-    def __init__(self, config: dict, platform: dict, items: list[CacheItem], current_round: int) -> None:
+    def __init__(self, config: dict, platform: dict, items: list[CacheItem]) -> None:
         super().__init__()
 
         # 初始化
         self.items = items
         self.config = config
         self.platform = platform
-        self.current_round = current_round
         self.code_saver = CodeSaver(self.config)
         self.response_checker = ResponseChecker(self.config)
 
@@ -55,11 +54,11 @@ class TranslatorTask(Base):
             self.messages, self.extra_log = self.generate_prompt_sakura(self.src_dict)
 
     # 启动任务
-    def start(self) -> dict:
-        return self.request(self.src_dict)
+    def start(self, current_round: int) -> dict:
+        return self.request(self.src_dict, current_round)
 
     # 请求
-    def request(self, src_dict: dict[str, str]) -> dict:
+    def request(self, src_dict: dict[str, str], current_round: int) -> dict:
         # 任务开始的时间
         task_start_time = time.time()
 
@@ -72,7 +71,7 @@ class TranslatorTask(Base):
             return {}
 
         # 发起请求
-        requester = TranslatorRequester(self.config, self.platform, self.current_round)
+        requester = TranslatorRequester(self.config, self.platform, current_round)
         skip, response_think, response_result, prompt_tokens, completion_tokens = requester.request(self.messages)
 
         # 如果请求结果标记为 skip，即有错误发生，则跳过本次循环
@@ -88,7 +87,7 @@ class TranslatorTask(Base):
         dst_dict: dict = TextHelper.safe_load_json_dict(response_result)
 
         # 检查回复内容
-        check_flag = self.response_checker.check(src_dict, dst_dict)
+        check_flag, check_results = self.response_checker.check(src_dict, dst_dict, current_round)
 
         # 模型回复日志
         if response_think != "":
@@ -97,11 +96,12 @@ class TranslatorTask(Base):
             self.extra_log.append("模型回复内容：\n" + response_result)
 
         # 检查译文
-        if check_flag != None:
+        if check_flag != None and check_flag not in (ResponseChecker.Error.SIMILARITY,):
             # 打印任务结果
             self.print(
                 self.generate_log_table(
                     *self.generate_log_rows(
+                        "red",
                         f"译文文本未通过检查，将在下一轮次的翻译中自动重试 - {check_flag}",
                         task_start_time,
                         prompt_tokens,
@@ -126,29 +126,49 @@ class TranslatorTask(Base):
             dst_dict = self.convert_to_traditional_chinese(dst_dict)
 
             # 更新缓存数据
+            updated_count = 0
             dst_sub_lines = list(dst_dict.values())
             for item in self.items:
-                dst, dst_sub_lines = item.merge_sub_lines(dst_sub_lines)
-                item.set_dst(dst)
-                item.set_status(Base.TranslationStatus.TRANSLATED)
+                dst, dst_sub_lines, check_results = item.merge_sub_lines(dst_sub_lines, check_results)
+                if dst != None:
+                    updated_count = updated_count + 1
+                    item.set_dst(dst)
+                    item.set_status(Base.TranslationStatus.TRANSLATED)
 
             # 打印任务结果
-            self.print(
-                self.generate_log_table(
-                    *self.generate_log_rows(
-                        "",
-                        task_start_time,
-                        prompt_tokens,
-                        completion_tokens,
-                        [line.strip() for line in src_dict.values()],
-                        [line.strip() for line in dst_dict.values()],
-                        self.extra_log,
+            if updated_count == len(self.items):
+                self.print(
+                    self.generate_log_table(
+                        *self.generate_log_rows(
+                            "green",
+                            "",
+                            task_start_time,
+                            prompt_tokens,
+                            completion_tokens,
+                            [line.strip() for line in src_dict.values()],
+                            [line.strip() for line in dst_dict.values()],
+                            self.extra_log,
+                        )
                     )
                 )
-            )
+            else:
+                self.print(
+                    self.generate_log_table(
+                        *self.generate_log_rows(
+                            "yellow",
+                            f"部分译文文本未通过检查，将在下一轮次的翻译中自动重试 - {check_flag}",
+                            task_start_time,
+                            prompt_tokens,
+                            completion_tokens,
+                            [line.strip() for line in src_dict.values()],
+                            [line.strip() for line in dst_dict.values()],
+                            self.extra_log,
+                        )
+                    )
+                )
 
         # 返回任务结果
-        if check_flag != None:
+        if check_flag != None and check_flag not in (ResponseChecker.Error.SIMILARITY,):
             return {
                 "check_flag": check_flag,
                 "row_count": 0,
@@ -158,7 +178,7 @@ class TranslatorTask(Base):
         else:
             return {
                 "check_flag": None,
-                "row_count": len(self.items),
+                "row_count": updated_count,
                 "prompt_tokens": prompt_tokens,
                 "completion_tokens": completion_tokens,
             }
@@ -285,31 +305,31 @@ class TranslatorTask(Base):
         return messages, extra_log
 
     # 生成日志行
-    def generate_log_rows(self, error: str, start_time: int, prompt_tokens: int, completion_tokens: int, source: list[str], translated: list[str], extra_log: list[str]) -> tuple[list[str], bool]:
+    def generate_log_rows(self, style: str, msg: str, start: int, pt: int, ct: int, srcs: list[str], dsts: list[str], extra: list[str]) -> tuple[list[str], str]:
         rows = []
 
-        if error != "":
-            rows.append(error)
+        if msg != "":
+            rows.append(msg)
         else:
             rows.append(
-                f"任务耗时 {(time.time() - start_time):.2f} 秒，"
-                + f"文本行数 {len(source)} 行，提示词消耗 {prompt_tokens} Tokens，文本补全消耗 {completion_tokens} Tokens"
+                f"任务耗时 {(time.time() - start):.2f} 秒，"
+                + f"文本行数 {len(srcs)} 行，提示词消耗 {pt} Tokens，文本补全消耗 {ct} Tokens"
             )
 
         # 添加额外日志
-        for v in extra_log:
+        for v in extra:
             rows.append(v.strip())
 
         # 原文译文对比
         pair = ""
-        for source, translated in itertools.zip_longest(source, translated, fillvalue = ""):
-            pair = pair + "\n" + f"{source} [bright_blue]-->[/] {translated}"
+        for src, dst in itertools.zip_longest(srcs, dsts, fillvalue = ""):
+            pair = pair + "\n" + f"{src} [bright_blue]-->[/] {dst}"
         rows.append(pair.strip())
 
-        return rows, error == ""
+        return rows, style
 
     # 生成日志表格
-    def generate_log_table(self, rows: list, success: bool) -> Table:
+    def generate_log_table(self, rows: list, style: str) -> Table:
         table = Table(
             box = box.ASCII2,
             expand = True,
@@ -320,7 +340,7 @@ class TranslatorTask(Base):
             show_header = False,
             show_footer = False,
             collapse_padding = True,
-            border_style = "green" if success else "red",
+            border_style = style,
         )
         table.add_column("", style = "white", ratio = 1, overflow = "fold")
 

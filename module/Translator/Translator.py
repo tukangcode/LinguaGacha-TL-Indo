@@ -201,7 +201,7 @@ class Translator(Base):
             tasks: list[TranslatorTask] = []
             self.print("")
             for chunk in tqdm(chunks, desc = "生成翻译任务", total = len(chunks)):
-                tasks.append(TranslatorTask(self.config, self.platform, chunk, current_round))
+                tasks.append(TranslatorTask(self.config, self.platform, chunk))
             self.print("")
 
             # 输出开始翻译的日志
@@ -224,7 +224,7 @@ class Translator(Base):
             # 开始执行翻译任务
             with concurrent.futures.ThreadPoolExecutor(max_workers = self.config.get("batch_size"), thread_name_prefix = "translator") as executor:
                 for task in tasks:
-                    future = executor.submit(task.start)
+                    future = executor.submit(task.start, current_round)
                     future.add_done_callback(self.task_done_callback)
 
         # 设置项目状态为已翻译

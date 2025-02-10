@@ -140,18 +140,24 @@ class CacheItem(BaseData):
             return [sub_line for sub_line in self.src.split("\n") if sub_line.strip() != ""]
 
     # 从切片中合并译文
-    def merge_sub_lines(self, dst_sub_lines: list[str]) -> tuple[str, list[str]]:
+    def merge_sub_lines(self, dst_sub_lines: list[str], check_results: list[int]) -> tuple[str, list[str], list[int]]:
+        # 检查数据为空时，填充为 0，即视为全部子句都通过了检查
+        if check_results == None or check_results == []:
+            check_results = [0] * len(dst_sub_lines)
+
         dst = ""
+        check = []
         for src_sub_line in self.src.split("\n"):
             if src_sub_line == "":
                 dst = dst + "\n"
             elif src_sub_line.strip() == "":
                 dst = dst + src_sub_line + "\n"
             else:
-                dst_sub_line = str(dst_sub_lines.pop(0))
-                if dst_sub_line == "":
-                    dst = dst + src_sub_line + "\n"
-                else:
-                    dst = dst + dst_sub_line + "\n"
+                check.append(check_results.pop(0))
+                dst = dst + str(dst_sub_lines.pop(0)) + "\n"
 
-        return dst.removesuffix("\n"), dst_sub_lines
+        # 如果当前片段中有没通过检查的子句，则将返回结果置空，以示当前片段需要重新翻译
+        if sum(check) >= 1:
+            return None, dst_sub_lines, check_results
+        else:
+            return dst.removesuffix("\n"), dst_sub_lines, check_results
