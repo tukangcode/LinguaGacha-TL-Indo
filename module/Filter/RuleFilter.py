@@ -21,16 +21,20 @@ class RuleFilter():
     SUFFIX = (
         ".mp3",
         ".wav",
+        ".ogg",
         ".png",
         ".jpg",
         ".gif",
+        ".psd",
+        ".webp",
+        ".heif",
+        ".heic",
+        ".txt",
+        ".7z",
+        ".gz",
         ".rar",
         ".zip",
         ".json",
-        ".ogg",
-        ".txt",
-        ".wav",
-        ".webp"
     )
 
     def __init__(self) -> None:
@@ -47,10 +51,10 @@ class RuleFilter():
         if all(c.isspace() or c.isnumeric() or TextHelper.is_punctuation(c) for c in src):
             return True
 
-        # 以文件名后缀结尾
+        # 以扩展名结尾
         if any(src.lower().endswith(suffix) for suffix in RuleFilter.SUFFIX):
             return True
 
-        # 以常见代码开头结尾
+        # 以常见代码开头
         if any(src.lower().startswith(suffix) for suffix in RuleFilter.PREFIX):
             return True
