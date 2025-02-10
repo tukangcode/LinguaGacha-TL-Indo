@@ -17,7 +17,7 @@ class BasicSettingsPage(QWidget, Base):
             "task_token_limit": 384,
             "batch_size": 0,
             "request_timeout": 120,
-            "max_round": 20,
+            "max_round": 16,
         }
 
         # 载入并保存默认配置
