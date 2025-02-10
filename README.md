@@ -48,6 +48,9 @@
 - 更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 202502010 v0.3.2
+  - 调整 显著降低了漏翻情况的发生
+
 - 202502010 v0.3.1
   - 新增 支持 [RenPy](https://www.renpy.org) 导出游戏文本（.rpy）
 
