@@ -44,11 +44,14 @@
   - 电子书（.txt .epub）
   - [RenPy](https://www.renpy.org) 导出游戏文本（.rpy）
   - [MTool](https://afdian.com/a/AdventCirno) 导出游戏文本（.json）
-  - [SExtractor](https://github.com/satan53x/SExtractor) 导出游戏文本（.txt .json）
+  - [SExtractor](https://github.com/satan53x/SExtractor) 导出游戏文本（.txt .json .xlsx）
   - [Translator++](https://dreamsavior.net/translator-plusplus) 导出游戏文本（.xlsx）
 - 更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 202502011 v0.4.1
+  - 调整 支持更多格式的 .xlsx 文件
+
 - 202502011 v0.4.0
   - 新增 自动术语表功能
 
@@ -56,8 +59,8 @@
   - 调整 优化漏翻检查规则
 
 - 202502010 v0.3.3
-  - 新增 - 支持火山引擎
-  - 修正 - 正确的识别 R1 官方格式思考内容
+  - 新增 支持火山引擎
+  - 修正 正确的识别 R1 官方格式思考内容
 
 - 202502010 v0.3.2
   - 调整 显著降低了漏翻情况的发生
