@@ -29,14 +29,18 @@
 ## 配置要求 🖥️
 - 兼容 `OpenAI` `Google` `Anthropic` `SakuraLLM` 标准的 AI 大模型接口
 - 兼容 [KeywordGacha](https://github.com/neavo/KeywordGacha) `使用 AI 能力一键生成术语表的次世代工具` 👈👈
-- 也可以使用 [本地模型一键包](https://github.com/neavo/OneClickLLAMA) 来获取完全免费的服务（需至少 8G 显存的独立显卡，Nvidia 显卡为佳）
 
 ## 使用流程 🛸
 - 从 [发布页](https://github.com/neavo/LinguaGacha/releases) 下载应用
+- 获取一个可靠的 AI 大模型接口，以下两种选择其一：
+  - [本地接口 - 点击查看教程](https://github.com/neavo/OneClickLLAMA)，免费，需至少 8G 显存的独立显卡，Nvidia 显卡为佳
+  - [DeepSeek - 点击查看教程](https://github.com/neavo/LinguaGacha/wiki/DeepSeek)，需付费但便宜，速度快，质量高，无显卡要求 `👈👈 推荐`
+- 准备要翻译的文本
+  - `字幕`、`电子书` 等一般不需要预处理
+  - `游戏文本` 需要根据游戏引擎选择合适的工具进行提取
 - 双击 `01_启动应用.bat` 启动应用
-  - 在 `接口管理` 中添加接口信息并激活接口
   - 在 `项目设置` 中设置原文语言、译文语言等必要信息
-  - 将要翻译的文本文件拷入输入文件夹，在 `开始翻译` 中点击开始翻译
+  - 将要翻译的文本文件复制到输入文件夹（默认为 `input` 文件夹），在 `开始翻译` 中点击开始翻译
 
 ## 文本格式 🏷️
 - 在任务开始时，`LG` 将扫描输入文件夹及其子文件夹寻找目标文件，包括但是不限于：
