@@ -49,6 +49,9 @@
 - 更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 202502012 v0.4.3
+  - 调整 优化 EPUB 读写逻辑
+
 - 202502012 v0.4.2
   - 修正 .ass .epub 不能正确保存翻译结果的问题
 
