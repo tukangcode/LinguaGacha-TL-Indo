@@ -14,7 +14,8 @@
 - 支持 `Claude`、`ChatGPT`、`DeepSeek`、`SakuraLLM` 等各种本地或在线接口
 - Less is More，更少的设置选项，更好的默认设置，减少烧脑的功能逻辑与设置，开箱即用！
 
-> ![sample_01](https://github.com/user-attachments/assets/dce4243a-2f4a-444b-a337-8d6c005790b9)
+> ![QQ截图20250213112409](https://github.com/user-attachments/assets/202d43bf-e2dc-427b-9bad-c5701b57de7a)
+
 
 ## 特别说明 ⚠️
 - 如您在翻译过程中使用了 [LinguaGacha](https://github.com/neavo/LinguaGacha) ，请在作品信息或发布页面的显要位置进行说明！
@@ -53,17 +54,12 @@
 - 更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
-- 202502012 v0.4.3
-  - 调整 优化 EPUB 读写逻辑
-
-- 202502012 v0.4.2
-  - 修正 .ass .epub 不能正确保存翻译结果的问题
-
-- 202502011 v0.4.1
-  - 调整 支持更多格式的 .xlsx 文件
-
-- 202502011 v0.4.0
+- 202502013 v0.4.4
   - 新增 自动术语表功能
+  - 调整 优化 EPUB 读写逻辑
+  - 调整 支持更多格式的 .xlsx 文件
+  - 调整 优化 UTF8-BOM 文件的兼容性
+  - 修正 .ass .epub 不能正确保存翻译结果的问题
 
 - 202502011 v0.3.4
   - 调整 优化漏翻检查规则
