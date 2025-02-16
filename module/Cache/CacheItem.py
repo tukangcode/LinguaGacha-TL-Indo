@@ -1,11 +1,17 @@
 import threading
 
 import tiktoken
+import tiktoken_ext
+from tiktoken_ext import openai_public
 
 from base.Base import Base
 from base.BaseData import BaseData
 
 class CacheItem(BaseData):
+
+    # 必须显式的引用这两个库，否则打包后会报错
+    tiktoken_ext
+    openai_public
 
     class FileType():
 
@@ -141,7 +147,7 @@ class CacheItem(BaseData):
     def get_token_count(self) -> int:
         with self.lock:
             if self.src not in CacheItem.TOKEN_COUNT_CACHE:
-                CacheItem.TOKEN_COUNT_CACHE[self.src] = len(tiktoken.get_encoding("cl100k_base").encode(self.src))
+                CacheItem.TOKEN_COUNT_CACHE[self.src] = len(tiktoken.get_encoding("o200k_base").encode(self.src))
 
             return CacheItem.TOKEN_COUNT_CACHE[self.src]
 
