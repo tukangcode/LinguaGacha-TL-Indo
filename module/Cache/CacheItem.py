@@ -163,9 +163,14 @@ class CacheItem(BaseData):
                 dst = dst + "\n"
             elif src_sub_line.strip() == "":
                 dst = dst + src_sub_line + "\n"
-            else:
+            elif len(dst_sub_lines) > 0:
                 check.append(check_results.pop(0))
                 dst = dst + str(dst_sub_lines.pop(0)) + "\n"
+            # 冗余步骤
+            # 当跳过行数检查步骤时，原文行数可能大于译文行数，此时需要填充多出来的行数
+            else:
+                check.append(0)
+                dst = dst + str("") + "\n"
 
         # 如果当前片段中有没通过检查的子句，则将返回结果置空，以示当前片段需要重新翻译
         if sum(check) >= 1:

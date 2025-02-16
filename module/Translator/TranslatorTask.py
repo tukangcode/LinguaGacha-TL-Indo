@@ -93,7 +93,11 @@ class TranslatorTask(Base):
         dst_dict, glossary_auto = ResponseDecoder().decode(response_result)
 
         # 检查回复内容
-        check_flag, check_results = self.response_checker.check(src_dict, dst_dict)
+        check_flag, check_result = self.response_checker.check(src_dict, dst_dict)
+
+        # 当任务失败且是单条目任务时，更新重试次数
+        if check_flag != None and len(self.items) == 1:
+            self.items[0].set_retry_count(self.items[0].get_retry_count() + 1)
 
         # 模型回复日志
         if response_think != "":
@@ -118,10 +122,6 @@ class TranslatorTask(Base):
                     )
                 )
             )
-
-            # 当翻译任务是单条目任务时，更新重试次数
-            if len(self.items) == 1:
-                self.items[0].set_retry_count(self.items[0].get_retry_count() + 1)
         else:
             # 标点修复
             dst_dict: dict[str, str] = self.punctuation_fix(src_dict, dst_dict)
@@ -143,7 +143,7 @@ class TranslatorTask(Base):
             updated_count = 0
             dst_sub_lines = list(dst_dict.values())
             for item in self.items:
-                dst, dst_sub_lines, check_results = item.merge_sub_lines(dst_sub_lines, check_results)
+                dst, dst_sub_lines, check_result = item.merge_sub_lines(dst_sub_lines, check_result)
                 if dst != None:
                     updated_count = updated_count + 1
                     item.set_dst(dst)

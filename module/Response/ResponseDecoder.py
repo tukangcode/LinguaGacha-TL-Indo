@@ -12,13 +12,13 @@ class ResponseDecoder(Base):
 
     # 从响应文本中解析出结果
     def decode(self, response: str) -> tuple[dict[str, str], dict[str, str]]:
-        glossary = []
-        translation = {}
-
         # 预处理
         response = response.strip().replace("```json", "").replace("```", "")
 
+        # 尝试直接反序列化
         try:
+            glossary = []
+            translation = {}
             json_data = json.loads(response)
 
             # 处理不同的数据结构
@@ -29,15 +29,14 @@ class ResponseDecoder(Base):
                 translation = json_data.get("translation", {})
 
             # 确保数据结构正确
-            if not isinstance(glossary, list):
-                raise ValueError("Invalid JSON format")
-            if not isinstance(translation, dict):
+            if not isinstance(translation, dict) or not isinstance(glossary, list):
                 raise ValueError("Invalid JSON format")
 
             return translation, glossary
         except:
             pass
 
+        # 尝试使用规则解析数据
         if not ("\"translation\"" in response and "\"name\"" in response):
             translation = self.decode_translation(response)
         else:
@@ -49,7 +48,8 @@ class ResponseDecoder(Base):
                 glossary = self.decode_glossary(x)
                 translation = self.decode_translation(y)
 
-        return translation, glossary
+        # 确保数据结构正确
+        return translation if isinstance(glossary, dict) else {}, glossary if isinstance(glossary, list) else []
 
     # 从响应文本中解析出术语表
     def decode_glossary(self, response: str) -> list[dict[str, str]]:
