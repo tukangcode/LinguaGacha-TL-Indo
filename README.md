@@ -13,8 +13,7 @@
 - 支持 `小说`、`字幕`、`游戏文本` 等多种文本类型与文本格式
 - 支持 `Claude`、`ChatGPT`、`DeepSeek`、`SakuraLLM` 等各种本地或在线接口
 
-> ![QQ截图20250213112409](https://github.com/user-attachments/assets/202d43bf-e2dc-427b-9bad-c5701b57de7a)
-
+> ![01](https://github.com/user-attachments/assets/859a7e32-bf35-4572-8460-4ecb11a8d20c)
 
 ## 特别说明 ⚠️
 - 如您在翻译过程中使用了 [LinguaGacha](https://github.com/neavo/LinguaGacha) ，请在作品信息或发布页面的显要位置进行说明！
@@ -38,7 +37,7 @@
 - 准备要翻译的文本
   - `字幕`、`电子书` 等一般不需要预处理
   - `游戏文本` 需要根据游戏引擎选择合适的工具进行提取
-- 双击 `01_启动应用.bat` 启动应用
+- 双击 `app.exe` 启动应用
   - 在 `项目设置` 中设置原文语言、译文语言等必要信息
   - 将要翻译的文本文件复制到输入文件夹（默认为 `input` 文件夹），在 `开始翻译` 中点击开始翻译
 - 你可以在 [Wiki](https://github.com/neavo/LinguaGacha/wiki) 找到各项功能的更详细介绍，也欢迎在 [讨论区](https://github.com/neavo/LinguaGacha/discussions) 投稿你的使用心得
@@ -54,6 +53,11 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250217 v0.6.0
+  - 新增 英文 UI（初步支持）
+  - 调整 翻译速度优化
+  - 调整 破限能力强化
+
 - 20250216 v0.5.2
   - 新增 MTool 优化器功能
   - 调整 允许翻译任务提前结束重试
