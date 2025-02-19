@@ -13,4 +13,5 @@ beautifulsoup4
 # Tools
 rich
 tqdm
+json-repair
 python-rapidjson

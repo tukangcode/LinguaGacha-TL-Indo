@@ -96,9 +96,9 @@ class LocalizerEN(LocalizerBase):
     response_checker_fail_line: str = "Response error (number of data lines)"
     response_checker_untranslated: str = "Untranslated content found in the response"
     response_decoder_glossary_by_json: str = "Glossary data [bright_blue]->[/] deserialization, total {COUNT} entries"
-    response_decoder_glossary_by_rule: str = "Glossary data [bright_blue]->[/] rule parsing, total {COUNT} entries"
+    response_decoder_glossary_by_rule: str = "Glossary data [bright_blue]->[/] rule parsing after split, total {COUNT} entries"
     response_decoder_translation_by_json: str = "Translation data [bright_blue]->[/] deserialization, total {COUNT} entries"
-    response_decoder_translation_by_rule: str = "Translation data [bright_blue]->[/] rule parsing, total {COUNT} entries"
+    response_decoder_translation_by_rule: str = "Translation data [bright_blue]->[/] rule parsing after split, total {COUNT} entries"
 
     # 应用设置
     app_settings_page_proxy_url = "Please enter network proxy address ..."
@@ -199,7 +199,7 @@ class LocalizerEN(LocalizerBase):
         + "\n" + "Setting appropriately can greatly increase translation speed. Please refer to the API platform's limits for settings."
     )
 
-    basic_settings_page_task_token_limit_title = "Translation Task Length Threshold"
+    basic_settings_page_task_token_limit_title = "Task Length Threshold"
     basic_settings_page_task_token_limit_content = "Maximum text length sent to the model at once for each translation task, unit is Token."
     basic_settings_page_request_timeout_title = "Request Timeout"
     basic_settings_page_request_timeout_content = (
@@ -210,7 +210,7 @@ class LocalizerEN(LocalizerBase):
     basic_settings_page_max_round_content = "After one translation round, if entries are still untranslated, restart translation until finished or the round limit is reached."
 
     # 高级功能
-    advance_feature_page_auto_glossary_enable_title = "Auto-complete Glossary (Experimental feature, SakuraLLM model not supported)"
+    advance_feature_page_auto_glossary_enable_title = "Auto Complete Glossary (Experimental feature, SakuraLLM model not supported)"
     advance_feature_page_auto_glossary_enable_content = (
         "When enabled, text will be analyzed during translation to attempt to automatically complete missing proper noun entries in the glossary."
         + "\n" + "This feature is designed only for gap-filling and cannot replace manually created glossaries. It is only effective when **Glossary feature is enabled**."

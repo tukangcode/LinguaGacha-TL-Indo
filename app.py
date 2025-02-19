@@ -22,6 +22,10 @@ def load_config() -> dict:
     return config
 
 if __name__ == "__main__":
+    # 创建文件夹
+    os.makedirs("./input", exist_ok = True)
+    os.makedirs("./output", exist_ok = True)
+
     # 启用了高 DPI 缩放
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)

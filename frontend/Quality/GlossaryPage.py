@@ -280,7 +280,7 @@ class GlossaryPage(QWidget, Base):
         def connect() -> None:
             QDesktopServices.openUrl(QUrl("https://github.com/neavo/KeywordGacha"))
 
-        push_button = TransparentPushButton(FluentIcon.COMPLETED, Localizer.get().glossary_page_kg)
+        push_button = TransparentPushButton(FluentIcon.ROBOT, Localizer.get().glossary_page_kg)
         push_button.clicked.connect(connect)
         parent.add_widget(push_button)
 

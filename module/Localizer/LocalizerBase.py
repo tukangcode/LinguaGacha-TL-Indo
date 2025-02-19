@@ -98,9 +98,9 @@ class LocalizerBase():
     response_checker_fail_line: str = "返回结果错误（数据行数）"
     response_checker_untranslated: str = "返回结果中存在没有翻译的内容"
     response_decoder_glossary_by_json: str = "术语数据 [bright_blue]->[/] 反序列化，共 {COUNT} 条"
-    response_decoder_glossary_by_rule: str = "术语数据 [bright_blue]->[/] 规则解析，共 {COUNT} 条"
+    response_decoder_glossary_by_rule: str = "术语数据 [bright_blue]->[/] 拆分后规则解析，共 {COUNT} 条"
     response_decoder_translation_by_json: str = "翻译数据 [bright_blue]->[/] 反序列化，共 {COUNT} 条"
-    response_decoder_translation_by_rule: str = "翻译数据 [bright_blue]->[/] 规则解析，共 {COUNT} 条"
+    response_decoder_translation_by_rule: str = "翻译数据 [bright_blue]->[/] 拆分后规则解析，共 {COUNT} 条"
 
     # 应用设置
     app_settings_page_proxy_url = "请输入网络代理地址 ..."

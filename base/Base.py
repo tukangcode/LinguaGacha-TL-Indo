@@ -2,6 +2,7 @@ import os
 import logging
 import threading
 import traceback
+from typing import Callable
 from logging.handlers import TimedRotatingFileHandler
 
 import rapidjson as json
@@ -253,9 +254,9 @@ class Base():
         EventManager.get_singleton().emit(event, data)
 
     # 订阅事件
-    def subscribe(self, event: int, hanlder: callable) -> None:
+    def subscribe(self, event: int, hanlder: Callable) -> None:
         EventManager.get_singleton().subscribe(event, hanlder)
 
     # 取消订阅事件
-    def unsubscribe(self, event: int, hanlder: callable) -> None:
+    def unsubscribe(self, event: int, hanlder: Callable) -> None:
         EventManager.get_singleton().unsubscribe(event, hanlder)

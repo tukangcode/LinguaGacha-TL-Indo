@@ -276,6 +276,6 @@ class PreTranslationReplacementPage(QWidget, Base):
         def connect() -> None:
             QDesktopServices.openUrl(QUrl("https://github.com/neavo/LinguaGacha/wiki"))
 
-        push_button = TransparentPushButton(FluentIcon.COMPLETED, Localizer.get().pre_translation_replacement_page_wiki)
+        push_button = TransparentPushButton(FluentIcon.HELP, Localizer.get().pre_translation_replacement_page_wiki)
         push_button.clicked.connect(connect)
         parent.add_widget(push_button)

@@ -95,16 +95,12 @@ class TranslatorTask(Base):
 
         # 提取回复内容
         if self.config.get("auto_glossary_enable") == False:
-            dst_dict, response_decode_log = ResponseDecoder().decode_translation(response_result)
-            glossary_auto = {}
+            dst_dict, glossary_auto, response_decode_log = ResponseDecoder().decode(response_result)
         else:
             dst_dict, glossary_auto, response_decode_log = ResponseDecoder().decode_mix(response_result)
 
-        # 有效性验证
-        if not (isinstance(dst_dict, dict) and isinstance(dst_dict.get("0"), str)):
-            dst_dict = {}
-        if not (isinstance(glossary_auto, list) and glossary_auto != [] and isinstance(glossary_auto[0], dict)):
-            glossary_auto = []
+        # 确保 kv 都为字符串
+        dst_dict = {str(k): str(v) for k, v in dst_dict.items()}
 
         # 检查回复内容
         check_flag, check_result = self.response_checker.check(src_dict, dst_dict)
