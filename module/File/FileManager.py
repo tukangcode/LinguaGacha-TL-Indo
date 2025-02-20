@@ -3,14 +3,12 @@ import re
 import copy
 import random
 import shutil
-import warnings
+import zipfile
 from datetime import datetime
 
-import ebooklib
 import openpyxl
 import rapidjson as json
 from bs4 import BeautifulSoup
-from ebooklib import epub
 from openpyxl import Workbook
 from openpyxl.utils import escape
 
@@ -18,19 +16,8 @@ from base.Base import Base
 from module.Cache.CacheItem import CacheItem
 from module.Cache.CacheProject import CacheProject
 from module.Localizer.Localizer import Localizer
-from module.TextHelper import TextHelper
 
 class FileManager(Base):
-
-    # https://github.com/aerkalov/ebooklib/issues/296
-    warnings.filterwarnings(
-        "ignore",
-        message = "In the future version we will turn default option ignore_ncx to True."
-    )
-    warnings.filterwarnings(
-        "ignore",
-        message = "This search incorrectly ignores the root element, and will be fixed in a future version"
-    )
 
     def __init__(self, config: dict) -> None:
         super().__init__()
@@ -458,18 +445,19 @@ class FileManager(Base):
             shutil.copy(abs_path, f"{output_path}/cache/temp/{rel_path}")
 
             # 数据处理
-            book = epub.read_epub(abs_path)
-            for doc in book.get_items_of_type(ebooklib.ITEM_DOCUMENT):
-                bs = BeautifulSoup(doc.get_content(), "html.parser")
-                for line in bs.find_all(("p", "h1", "h2", "h3", "h4", "h5", "h6")):
-                    items.append(CacheItem({
-                        "src": line.get_text(),
-                        "dst": line.get_text(),
-                        "tag": doc.get_id(),
-                        "row": len(items),
-                        "file_type": CacheItem.FileType.EPUB,
-                        "file_path": rel_path,
-                    }))
+            with zipfile.ZipFile(abs_path, "r") as zip_reader:
+                for path in [v for v in zip_reader.namelist() if v.lower().endswith((".html", ".xhtml"))]:
+                    with zip_reader.open(path) as reader:
+                        bs = BeautifulSoup(reader.read().decode("utf-8-sig"), "html.parser")
+                        for dom in bs.find_all(("p", "h1", "h2", "h3", "h4", "h5", "h6")):
+                            items.append(CacheItem({
+                                "src": dom.get_text(),
+                                "dst": dom.get_text(),
+                                "tag": path,
+                                "row": len(items),
+                                "file_type": CacheItem.FileType.EPUB,
+                                "file_path": rel_path,
+                            }))
 
         return items
 
@@ -491,64 +479,84 @@ class FileManager(Base):
             # 按行号排序
             items = sorted(items, key = lambda x: x.get_row())
 
-            # 读取原始文件
-            book = epub.read_epub(f"{output_path}/cache/temp/{rel_path}")
-            for doc in book.get_items_of_type(ebooklib.ITEM_DOCUMENT):
-                bs = BeautifulSoup(doc.get_content(), "html.parser")
-
-                target = [item for item in items if item.get_tag() == doc.get_id()]
-                for dom in bs.find_all(("p", "h1", "h2", "h3", "h4", "h5", "h6")):
-                    item = target.pop(0)
-
-                    # 当译文为空，并且节点原始数据中包含图片或者换行符时，则保持原样
-                    if item.get_dst() == "" and dom.find(("br", "img")) != None:
-                        pass
-                    else:
-                        dom.string = item.get_dst()
-
-                # 将修改后的 HTML 内容重新填充回去
-                doc.set_content(str(bs).encode("utf-8"))
-
-            # 将修改后的数据写入文件
+            # 数据处理
             abs_path = f"{output_path}/{rel_path}"
             os.makedirs(os.path.dirname(abs_path), exist_ok = True)
-            epub.write_epub(abs_path, book, {})
+            with zipfile.ZipFile(abs_path, "w") as zip_writer:
+                with zipfile.ZipFile(f"{output_path}/cache/temp/{rel_path}", "r") as zip_reader:
+                    for path in zip_reader.namelist():
+                        # .css 文件移除竖排属性
+                        if path.lower().endswith(".css"):
+                            with zip_reader.open(path) as reader:
+                                zip_writer.writestr(
+                                    path,
+                                    re.sub(r"[^;\s]*writing-mode\s*:\s*vertical-rl;", "", reader.read().decode("utf-8-sig")),
+                                )
+                        # .html .xhtml 文件写入译文
+                        elif path.lower().endswith((".html", ".xhtml")):
+                            with zip_reader.open(path) as reader:
+                                target = [item for item in items if item.get_tag() == path]
+                                bs = BeautifulSoup(reader.read().decode("utf-8-sig"), "html.parser")
+                                for dom in bs.find_all(("p", "h1", "h2", "h3", "h4", "h5", "h6")):
+                                    item = target.pop(0)
+
+                                    # 当译文为空，并且节点原始数据中包含图片或者换行符时，则保持原样
+                                    if item.get_dst() == "" and dom.find(("br", "img")) != None:
+                                        pass
+                                    else:
+                                        dom.string = item.get_dst()
+
+                                # 将修改后的内容写回去
+                                zip_writer.writestr(path, str(bs))
+                        # 其他文件直接复制
+                        else:
+                            zip_writer.writestr(path, zip_reader.read(path))
 
         # 分别处理每个文件（双语）
         for rel_path, items in data.items():
             # 按行号排序
             items = sorted(items, key = lambda x: x.get_row())
 
-            # 读取原始文件
-            book = epub.read_epub(f"{output_path}/cache/temp/{rel_path}")
-            for doc in book.get_items_of_type(ebooklib.ITEM_DOCUMENT):
-                bs = BeautifulSoup(doc.get_content(), "html.parser")
-
-                target = [item for item in items if item.get_tag() == doc.get_id()]
-                for dom in bs.find_all(("p", "h1", "h2", "h3", "h4", "h5", "h6")):
-                    item = target.pop(0)
-
-                    # 当译文为空，并且节点原始数据中包含图片或者换行符时，则保持原样
-                    if item.get_dst() == "" and dom.find(("br", "img")) != None:
-                        pass
-                    else:
-                        dom.string = item.get_dst()
-
-                    # 避免重复的行
-                    if item.get_src() != item.get_dst():
-                        line_src = copy.copy(dom)
-                        line_src.string = item.get_src()
-                        line_src["style"] = line_src.get("style", "").removesuffix(";") + "opacity:0.4;"
-                        dom.insert_before(line_src)
-                        dom.insert_before("\n")
-
-                # 将修改后的 HTML 内容重新填充回去
-                doc.set_content(str(bs).encode("utf-8"))
-
-            # 将修改后的数据写入文件
+            # 数据处理
             abs_path = f"{output_path}/双语对照/{rel_path}"
             os.makedirs(os.path.dirname(abs_path), exist_ok = True)
-            epub.write_epub(abs_path, book, {})
+            with zipfile.ZipFile(abs_path, "w") as zip_writer:
+                with zipfile.ZipFile(f"{output_path}/cache/temp/{rel_path}", "r") as zip_reader:
+                    for path in zip_reader.namelist():
+                        # .css 文件移除竖排属性
+                        if path.lower().endswith(".css"):
+                            with zip_reader.open(path) as reader:
+                                zip_writer.writestr(
+                                    path,
+                                    re.sub(r"[^;\s]*writing-mode\s*:\s*vertical-rl;", "", reader.read().decode("utf-8-sig")),
+                                )
+                        # .html .xhtml 文件写入译文
+                        elif path.lower().endswith((".html", ".xhtml")):
+                            with zip_reader.open(path) as reader:
+                                target = [item for item in items if item.get_tag() == path]
+                                bs = BeautifulSoup(reader.read().decode("utf-8-sig"), "html.parser")
+                                for dom in bs.find_all(("p", "h1", "h2", "h3", "h4", "h5", "h6")):
+                                    item = target.pop(0)
+
+                                    # 当译文为空，并且节点原始数据中包含图片或者换行符时，则保持原样
+                                    if item.get_dst() == "" and dom.find(("br", "img")) != None:
+                                        pass
+                                    else:
+                                        dom.string = item.get_dst()
+
+                                    # 输出双语，但是避免重复的行
+                                    if item.get_src() != item.get_dst():
+                                        line_src = copy.copy(dom)
+                                        line_src.string = item.get_src()
+                                        line_src["style"] = line_src.get("style", "").removesuffix(";") + "opacity:0.50;"
+                                        dom.insert_before(line_src)
+                                        dom.insert_before("\n")
+
+                                # 将修改后的内容写回去
+                                zip_writer.writestr(path, str(bs))
+                        # 其他文件直接复制
+                        else:
+                            zip_writer.writestr(path, zip_reader.read(path))
 
     # RENPY
     def read_from_path_renpy(self, input_path: str, output_path: str, abs_paths: list[str]) -> list[CacheItem]:
