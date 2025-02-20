@@ -1,4 +1,4 @@
-<h1><p align='center'>LinguaGacha</p></h1>
+<div align=center><img src="https://github.com/user-attachments/assets/de19ec3f-246c-432d-9636-ff16f82b094e" width="256px;"></div>
 <div align=center><img src="https://img.shields.io/github/v/release/neavo/LinguaGacha"/>   <img src="https://img.shields.io/github/license/neavo/LinguaGacha"/>   <img src="https://img.shields.io/github/stars/neavo/LinguaGacha"/></div>
 <p align='center'>Next-generation text translator utilizing AI capabilities for one-click translation of novels, games, subtitles, and more</p>
 
@@ -6,7 +6,7 @@
 &ensp;
 
 ## README 🌍
-- [ [中文](./README.md) ] | [ [English](/README_EN.md) ]
+- [ [中文](./README.md) ] | [ [English](./README_EN.md) ] | [ [日本語](./README_JA.md) ]
 
 ## Overview 📢
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) (/ˈlɪŋɡwə ˈɡɑːtʃə/), abbreviated as `LG`, is an AI-powered next-generation text translator
@@ -53,23 +53,27 @@
   - [MTool](https://afdian.com/a/AdventCirno) exports (.json)
   - [SExtractor](https://github.com/satan53x/SExtractor) exports (.txt .json .xlsx)
   - [Translator++](https://dreamsavior.net/translator-plusplus) exports (.xlsx)
-- See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/Supported-File-Formats) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
+- See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250220 v0.6.2
+  - OPT - Improved preservation of original EPUB styles
+  - OPT - Minor performance optimization
+
 - 20250218 v0.6.1
-  - Added internationalization support: `Chinese` `English`
-  - Improved translation speed
-  - Enhanced limit-breaking capabilities
+  - ADD - Internationalization UI (`Chinese` `English`)
+  - OPT - Translation speed optimization
+  - OPT - Enhanced ability to overcome limitations
 
 - 20250216 v0.5.2
-  - Added MTool optimizer
-  - Enabled early termination for translation tasks
-  - Fixed RenPy file extension issues
+  - ADD - MTool Optimizer feature
+  - OPT - Allowed early termination and retry of translation tasks
+  - FIX - Incorrect RenPy file extension
 
 - 20250215 v0.4.6
-  - Implemented automatic glossary generation
-  - Expanded XLSX format support
-  - Improved UTF8-BOM file compatibility
+  - ADD - Automatic glossary feature
+  - OPT - Support for a wider range of XLSX files
+  - OPT - Optimized UTF8-BOM file compatibility
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)
@@ -79,3 +83,5 @@
 ## Support 😥
 - Runtime logs are stored in `log` folder
 - Please attach relevant logs when reporting issues
+- You can also join our groups for discussion and feedback:
+  - Discord - https://discord.gg/kX7UnxnKje

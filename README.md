@@ -1,13 +1,9 @@
-<h1><p align='center' >LinguaGacha</p></h1>
+<div align=center><img src="https://github.com/user-attachments/assets/de19ec3f-246c-432d-9636-ff16f82b094e" width="256px;"></div>
 <div align=center><img src="https://img.shields.io/github/v/release/neavo/LinguaGacha"/>   <img src="https://img.shields.io/github/license/neavo/LinguaGacha"/>   <img src="https://img.shields.io/github/stars/neavo/LinguaGacha"/></div>
 <p align='center'>使用 AI 能力一键翻译 小说、游戏、字幕 等文本内容的次世代文本翻译器</p>
 
-&ensp;
-&ensp;
-
-
 ## README 🌍
-- [ [中文](./README.md) ] | [ [English](/README_EN.md) ]
+- [ [中文](./README.md) ] | [ [English](./README_EN.md) ] | [ [日本語](./README_JA.md) ]
 
 ## 概述 📢
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) (/ˈlɪŋɡwə ˈɡɑːtʃə/)，简称 `LG`，使用 AI 技术次世代文本翻译器
@@ -57,20 +53,24 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250220 v0.6.2
+  - 调整 - 更好的保留 EPUB 文件的原有样式
+  - 调整 - 较小的性能优化
+
 - 20250218 v0.6.1
-  - 新增 国际化 UI `中文` `English`
-  - 调整 翻译速度优化
-  - 调整 破限能力强化
+  - 新增 - 国际化 UI `中文` `English`
+  - 调整 - 翻译速度优化
+  - 调整 - 破限能力强化
 
 - 20250216 v0.5.2
-  - 新增 MTool 优化器功能
-  - 调整 允许翻译任务提前结束重试
-  - 修正 RenPy 文件错误的后缀名
+  - 新增 - MTool 优化器功能
+  - 调整 - 允许翻译任务提前结束重试
+  - 修正 - RenPy 文件错误的后缀名
 
 - 20250215 v0.4.6
-  - 新增 自动术语表功能
-  - 调整 支持更多种类的 XLSX 文件
-  - 调整 优化 UTF8-BOM 文件的兼容性
+  - 新增 - 自动术语表功能
+  - 调整 - 支持更多种类的 XLSX 文件
+  - 调整 - 优化 UTF8-BOM 文件的兼容性
 
 ## 常见问题 📥
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系
@@ -78,5 +78,8 @@
   - `LinguaGacha` 的作者也是 `AiNiee v5` 的主要开发与维护者之一
  
 ## 问题反馈 😥
-- 运行时的日志保存在应用根目录下的 `log` 等文件夹类
+- 运行时的日志保存在应用根目录下的 `log` 等文件夹
 - 反馈问题的时候请附上这些日志文件
+- 你也可以来群组讨论与反馈
+  - QQ - 41763231⑥
+  - Discord - https://discord.gg/kX7UnxnKje
