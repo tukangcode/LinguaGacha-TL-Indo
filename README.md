@@ -22,7 +22,7 @@
 ## 功能优势 📌
 - 极快的翻译速度，十秒钟一份字幕，一分钟一本小说，五分钟一部游戏
 - 自动生成术语表，保证角色姓名等专有名词在整部作品中的译名统一  `👈👈 独家绝技`
-- 最优的翻译质量，无论是 旗舰模型 `诸如 DeepSeek-R1` 还是 本地小模型 `诸如 Qwen2.5-7B` 
+- 最优的翻译质量，无论是 旗舰模型 `诸如 DeepSeek-R1` 还是 本地小模型 `诸如 Qwen2.5-7B`
 - `100%` 精确还原文本样式与文本内代码，显著减少后期工作量，是制作内嵌汉化的最佳选择  `👈👈 独家绝技`
 
 ## 配置要求 🖥️
@@ -53,6 +53,9 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250221 v0.6.3
+  - 细节调整
+
 - 20250220 v0.6.2
   - 调整 - 更好的保留 EPUB 文件的原有样式
   - 调整 - 较小的性能优化
@@ -76,7 +79,7 @@
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系
   - `LinguaGacha` 是吸取了 `AiNiee` 的经验以后开发的全新的翻译器应用
   - `LinguaGacha` 的作者也是 `AiNiee v5` 的主要开发与维护者之一
- 
+
 ## 问题反馈 😥
 - 运行时的日志保存在应用根目录下的 `log` 等文件夹
 - 反馈问题的时候请附上这些日志文件
