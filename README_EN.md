@@ -56,6 +56,11 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+## What's Changed
+- 20250224 v0.7.0
+  - NEW - RenPy text code preservation and detection support
+  - OPT - Significantly reduced CPU usage in high concurrency tasks
+
 - 20250223 v0.6.4
   - OPT: Enhanced compatibility for English RPG Maker games.
   - OPT: Disabled verbose logging when a large number of quests are active.
@@ -71,16 +76,6 @@
   - ADD - Internationalization UI (`Chinese` `English`)
   - OPT - Translation speed optimization
   - OPT - Enhanced ability to overcome limitations
-
-- 20250216 v0.5.2
-  - ADD - MTool Optimizer feature
-  - OPT - Allowed early termination and retry of translation tasks
-  - FIX - Incorrect RenPy file extension
-
-- 20250215 v0.4.6
-  - ADD - Automatic glossary feature
-  - OPT - Support for a wider range of XLSX files
-  - OPT - Optimized UTF8-BOM file compatibility
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)
