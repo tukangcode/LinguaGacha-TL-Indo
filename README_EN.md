@@ -56,8 +56,7 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
-## What's Changed
-- 20250224 v0.7.0
+- 20250224 v0.7.1
   - NEW - RenPy text code preservation and detection support
   - OPT - Significantly reduced CPU usage in high concurrency tasks
 
