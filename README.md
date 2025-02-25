@@ -53,6 +53,10 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250225 v0.7.2
+  - 新增 - 支持 Cladue Sonnet 3.7 思考模式
+  - 修正 - 繁体输出时术语表检查结果不正确的问题
+
 - 20250224 v0.7.1
   - 新增 - 支持 RenPy 文本的代码保留与检测
   - 调整 - 显著降低了高并发任务数量时的 CPU 占用率
