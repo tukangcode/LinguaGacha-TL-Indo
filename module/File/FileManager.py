@@ -9,6 +9,7 @@ from datetime import datetime
 import openpyxl
 import rapidjson as json
 from bs4 import BeautifulSoup
+from lxml import etree
 from openpyxl import Workbook
 from openpyxl.utils import escape
 
@@ -18,6 +19,9 @@ from module.Cache.CacheProject import CacheProject
 from module.Localizer.Localizer import Localizer
 
 class FileManager(Base):
+
+    # 显式引用以避免打包问题
+    etree
 
     def __init__(self, config: dict) -> None:
         super().__init__()
@@ -448,7 +452,7 @@ class FileManager(Base):
             with zipfile.ZipFile(abs_path, "r") as zip_reader:
                 for path in zip_reader.namelist():
                     if path.lower().endswith((".html", ".xhtml")):
-                        tags = ("p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "div")
+                        tags = ("p", "h1", "h2", "h3", "h4", "h5", "h6", "div")
                         with zip_reader.open(path) as reader:
                             bs = BeautifulSoup(reader.read().decode("utf-8-sig"), "html.parser")
                             for dom in bs.find_all(tags):
@@ -540,7 +544,7 @@ class FileManager(Base):
                     else:
                         dom["style"] = style_content
 
-                tags = ("p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "div")
+                tags = ("p", "h1", "h2", "h3", "h4", "h5", "h6", "div")
                 for dom in bs.find_all(tags):
                     # 跳过空标签或嵌套标签
                     if dom.get_text().strip() == "" or dom.find(tags) != None:
@@ -556,12 +560,7 @@ class FileManager(Base):
                         dom.insert_before(line_src)
                         dom.insert_before("\n")
 
-                    # 写入译文
-                    dom_a = dom.find("a")
-                    if dom_a != None:
-                        dom_a.string = item.get_dst()
-                    else:
-                        dom.string = item.get_dst()
+                    dom.string = item.get_dst()
 
                 # 将修改后的内容写回去
                 zip_writer.writestr(path, str(bs))

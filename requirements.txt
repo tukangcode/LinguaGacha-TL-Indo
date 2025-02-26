@@ -7,8 +7,8 @@ google-generativeai
 tiktoken
 opencc
 openpyxl
-beautifulsoup4
 lxml
+beautifulsoup4
 
 # Tools
 rich

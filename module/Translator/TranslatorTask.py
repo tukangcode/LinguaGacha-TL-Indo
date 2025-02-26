@@ -350,13 +350,11 @@ class TranslatorTask(Base):
         })
 
         # 术语表
-        base = ""
+        main = "将下面的日文文本翻译成中文：\n" + "\n".join(src_dict.values())
         if self.config.get("glossary_enable") == True:
             result = self.prompt_builder.build_glossary_sakura(src_dict)
-            if result == "":
-                base = "将下面的日文文本翻译成中文：\n" + "\n".join(src_dict.values())
-            else:
-                base = (
+            if result != "":
+                main = (
                     "根据以下术语表（可以为空）：\n" + result
                     + "\n" + "将下面的日文文本根据对应关系和备注翻译成中文：\n" + "\n".join(src_dict.values())
                 )
@@ -365,7 +363,7 @@ class TranslatorTask(Base):
         # 构建提示词列表
         messages.append({
             "role": "user",
-            "content": base,
+            "content": main,
         })
 
         return messages, extra_log
