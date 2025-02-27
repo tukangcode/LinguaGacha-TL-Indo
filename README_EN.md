@@ -56,6 +56,11 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250228 v0.8.0
+  - NEW - Dynamic construction of translation instructions function
+    - Engine dynamically analyzes the text of each task and generates corresponding instructions
+    - Significantly improved the code retention rate for RenPy and RPGMaker engine games
+
 - 20250227 v0.7.5
   - OPT - Tweak EPUB styling and compatibility
 
@@ -66,22 +71,6 @@
 - 20250224 v0.7.1
   - NEW - RenPy text code preservation and detection support
   - OPT - Significantly reduced CPU usage in high concurrency tasks
-
-- 20250223 v0.6.4
-  - OPT: Enhanced compatibility for English RPG Maker games.
-  - OPT: Disabled verbose logging when a large number of quests are active.
-
-- 20250221 v0.6.3
-  - Minor Update
-
-- 20250220 v0.6.2
-  - OPT - Improved preservation of original EPUB styles
-  - OPT - Minor performance optimization
-
-- 20250218 v0.6.1
-  - ADD - Internationalization UI (`Chinese` `English`)
-  - OPT - Translation speed optimization
-  - OPT - Enhanced ability to overcome limitations
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)

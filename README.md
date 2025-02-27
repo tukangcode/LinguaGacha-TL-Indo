@@ -53,6 +53,11 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250228 v0.8.0
+  - 新增 - 动态构造翻译指令 功能
+    - 翻译引擎动态的分析每个任务的文本，生成对应的翻译指令
+    - 显著的提升了 RenPy 与 RPGMaker 引擎游戏的代码保留率
+
 - 20250227 v0.7.5
   - 调整 - 优化 EPUB 样式与兼容性
 
@@ -63,22 +68,6 @@
 - 20250224 v0.7.1
   - 新增 - 支持 RenPy 文本的代码保留与检测
   - 调整 - 显著降低了高并发任务数量时的 CPU 占用率
-
-- 20250223 v0.6.4
-  - 调整 - 英文 RPGMaker 游戏兼容性优化
-  - 调整 - 实时任务数较多时禁用详细日志的打印
-
-- 20250221 v0.6.3
-  - 细节调整
-
-- 20250220 v0.6.2
-  - 调整 - 更好的保留 EPUB 文件的原有样式
-  - 调整 - 较小的性能优化
-
-- 20250218 v0.6.1
-  - 新增 - 国际化 UI `中文` `English`
-  - 调整 - 翻译速度优化
-  - 调整 - 破限能力强化
 
 ## 常见问题 📥
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系
