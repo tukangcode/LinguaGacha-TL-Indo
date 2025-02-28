@@ -56,6 +56,9 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250228 v0.8.1
+  - FIX - Minor issues with untranslated text and code detection logic.
+
 - 20250228 v0.8.0
   - NEW - Dynamic construction of translation instructions function
     - Engine dynamically analyzes the text of each task and generates corresponding instructions
