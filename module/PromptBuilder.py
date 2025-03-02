@@ -91,7 +91,7 @@ class PromptBuilder(Base):
             base = self.base
 
         # 添加或移除代码示例文本
-        if samples != []:
+        if len(samples) > 0:
             if prompt_language == Base.Language.ZH:
                 base = base.replace(
                     "无需翻译。",
