@@ -10,8 +10,10 @@
 
 ## Overview 📢
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) (/ˈlɪŋɡwə ˈɡɑːtʃə/), abbreviated as `LG`, is an AI-powered next-generation text translator
-- Supports one-click mutual translation between multiple languages including `Chinese`, `English`, `Japanese`, `Korean`, `Russian`
-- Compatible with various text types and formats including `novels`, `subtitles`, `game texts`
+- Out of the box, (almost) no setup needed
+- Supports one-click translation between 13 languages
+  - including `Chinese`, `English`, `Japanese`, `Korean`, `Russian`, `German`, `French`, `Italian`, etc.
+- Supports various text types and formats such as `subtitles`, `e-books`, and `game text`
 - Supports both local and online interfaces such as `Claude`, `ChatGPT`, `DeepSeek`, `SakuraLLM`
 
 > <img src="https://github.com/user-attachments/assets/859a7e32-bf35-4572-8460-4ecb11a8d20c" style="width: 80%;">
@@ -56,6 +58,13 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250302 v0.9.0
+ - Internationalization Language Special
+   - Added support for `German`, `French`, `Spanish`, `Italian`, `Portuguese`, `Thai`, `Indonesian` and `Vietnamese`.
+- Welcome to provide feedback on the translation quality and usage experience of these newly added languages.
+ - OPT - Support for list tags and EPUB3 table of contents.
+ - OPT - Dynamically constructed translation commands currently only take effect for certain text types.
+
 - 20250228 v0.8.1
   - FIX - Minor issues with untranslated text and code detection logic.
 
@@ -63,17 +72,6 @@
   - NEW - Dynamic construction of translation instructions function
     - Engine dynamically analyzes the text of each task and generates corresponding instructions
     - Significantly improved the code retention rate for RenPy and RPGMaker engine games
-
-- 20250227 v0.7.5
-  - OPT - Tweak EPUB styling and compatibility
-
-- 20250225 v0.7.2
-  - NEW - Thinking Mode Support for Claude Sonnet 3.7
-  - FIX - Result Check Error with Traditional Chinese Output
-
-- 20250224 v0.7.1
-  - NEW - RenPy text code preservation and detection support
-  - OPT - Significantly reduced CPU usage in high concurrency tasks
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)

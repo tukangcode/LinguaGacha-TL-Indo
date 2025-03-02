@@ -7,8 +7,9 @@
 
 ## 概述 📢
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) (/ˈlɪŋɡwə ˈɡɑːtʃə/)，简称 `LG`，使用 AI 技术次世代文本翻译器
-- 支持 `中` `英` `日` `韩` `俄` 等多种语言的一键互译
-- 支持 `小说`、`字幕`、`游戏文本` 等多种文本类型与文本格式
+- 开箱即用，（几乎）无需设置
+- 支持 `中` `英` `日` `韩` `俄` `德` `法` `意` 等 13 种语言的一键互译
+- 支持 `字幕`、`电子书`、`游戏文本` 等多种文本类型与文本格式
 - 支持 `Claude`、`ChatGPT`、`DeepSeek`、`SakuraLLM` 等各种本地或在线接口
 
 > <img src="https://github.com/user-attachments/assets/859a7e32-bf35-4572-8460-4ecb11a8d20c" style="width: 80%;">
@@ -53,6 +54,13 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250302 v0.9.0
+  - 国际化语言专题
+    - 新增了对 `德文` `法文` `西班牙文` `意大利文` `葡萄牙文` `泰文` `印尼文` `越南文` 的支持
+    - 欢迎反馈这些新增语言的翻译质量情况与使用心得
+  - 调整 - 支持 列表标签 及 EPUB3 目录
+  - 调整 - 动态构造翻译指令目前只针对部分文本类型生效
+
 - 20250228 v0.8.1
   - 修正 - 漏翻与代码检测逻辑上的细节问题
 
@@ -60,17 +68,6 @@
   - 新增 - 动态构造翻译指令 功能
     - 翻译引擎动态的分析每个任务的文本，生成对应的翻译指令
     - 显著的提升了 RenPy 与 RPGMaker 引擎游戏的代码保留率
-
-- 20250227 v0.7.5
-  - 调整 - 优化 EPUB 样式与兼容性
-
-- 20250225 v0.7.2
-  - 新增 - 支持 Cladue Sonnet 3.7 思考模式
-  - 修正 - 繁体输出时术语表检查结果不正确的问题
-
-- 20250224 v0.7.1
-  - 新增 - 支持 RenPy 文本的代码保留与检测
-  - 调整 - 显著降低了高并发任务数量时的 CPU 占用率
 
 ## 常见问题 📥
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系
