@@ -59,14 +59,17 @@
 
 ## Recent Updates 📅
 - 20250302 v0.9.0
+  - OPT - Significantly cut down on the number of rounds and time needed for translation.
+
+- 20250302 v0.9.0
  - Internationalization Language Special
-   - Added support for `German`, `French`, `Spanish`, `Italian`, `Portuguese`, `Thai`, `Indonesian` and `Vietnamese`.
-- Welcome to provide feedback on the translation quality and usage experience of these newly added languages.
+   - Added support for `German`, `French`, `Spanish`, `Italian`, `Portuguese`, `Thai`, `Indonesian` and `Vietnamese`
+- Welcome to provide feedback on the translation quality and usage experience of these newly added languages
  - OPT - Support for list tags and EPUB3 table of contents.
- - OPT - Dynamically constructed translation commands currently only take effect for certain text types.
+ - OPT - Dynamically constructed translation commands currently only take effect for certain text types
 
 - 20250228 v0.8.1
-  - FIX - Minor issues with untranslated text and code detection logic.
+  - FIX - Minor issues with untranslated text and code detection logic
 
 - 20250228 v0.8.0
   - NEW - Dynamic construction of translation instructions function
