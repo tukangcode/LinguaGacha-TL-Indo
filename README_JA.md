@@ -65,4 +65,4 @@
 - 実行時のログは `log` フォルダに保存されます
 - 問題を報告する際は、関連するログを添付してください
 - グループに参加して、ディスカッションやフィードバックもできます。
-  - Discord - https://discord.gg/kX7UnxnKje
+  - Discord - https://discord.gg/pyMRBGse75

@@ -54,6 +54,11 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250304 v0.9.3
+  - 调整 - 标点修复逻辑调整
+    - 现在尽可能的还原译文语言的标点使用习惯
+  - 调整 - 未启用繁体输出时强制输出简体
+
 - 20250304 v0.9.2
   - 调整 - EPUB 尽可能多的保留原始样式
   - 其他细节修复和调整
@@ -86,4 +91,4 @@
 - 反馈问题的时候请附上这些日志文件
 - 你也可以来群组讨论与反馈
   - QQ - 41763231⑥
-  - Discord - https://discord.gg/kX7UnxnKje
+  - Discord - https://discord.gg/pyMRBGse75

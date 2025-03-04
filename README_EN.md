@@ -58,6 +58,11 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250304 v0.9.3
+  - OPT - Punctuation fixes, logical tweaks
+    - Now trying as much as possible to restore the punctuation habits of the translated language
+  - OPT - Force simplified Chinese output when traditional Chinese output is not enabled
+
 - 20250304 v0.9.2
   - OPT - Keep as much of the original style as possible for EPUB
   - Minor fix and update
@@ -89,4 +94,4 @@
 - Runtime logs are stored in `log` folder
 - Please attach relevant logs when reporting issues
 - You can also join our groups for discussion and feedback:
-  - Discord - https://discord.gg/kX7UnxnKje
+  - Discord - https://discord.gg/pyMRBGse75
