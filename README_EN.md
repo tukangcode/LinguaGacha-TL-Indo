@@ -51,6 +51,7 @@
 - Processes all supported files in input folder (including subdirectories):
   - Subtitles (.srt .ass)
   - E-books (.txt .epub)
+  - Markdown（.md）
   - [RenPy](https://www.renpy.org) exports (.rpy)
   - [MTool](https://afdian.com/a/AdventCirno) exports (.json)
   - [SExtractor](https://github.com/satan53x/SExtractor) exports (.txt .json .xlsx)
@@ -58,6 +59,11 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250306 v0.10.0
+  - NEW - Added support for Markdown (.md) files
+  - OPT - Optimized Ren'Py compatibility
+  - FIX - Attempted to fix the occasional parallel processing issue when using the default English prompt
+
 - 20250304 v0.9.3
   - OPT - Punctuation fixes, logical tweaks
     - Now trying as much as possible to restore the punctuation habits of the translated language
@@ -68,7 +74,7 @@
   - Minor fix and update
 
 - 20250302 v0.9.1
-  - OPT - Significantly cut down on the number of rounds and time needed for translation.
+  - OPT - Significantly cut down on the number of rounds and time needed for translation
 
 - 20250302 v0.9.0
  - Internationalization Language Special
@@ -76,14 +82,6 @@
 - Welcome to provide feedback on the translation quality and usage experience of these newly added languages
  - OPT - Support for list tags and EPUB3 table of contents.
  - OPT - Dynamically constructed translation commands currently only take effect for certain text types
-
-- 20250228 v0.8.1
-  - FIX - Minor issues with untranslated text and code detection logic
-
-- 20250228 v0.8.0
-  - NEW - Dynamic construction of translation instructions function
-    - Engine dynamically analyzes the text of each task and generates corresponding instructions
-    - Significantly improved the code retention rate for RenPy and RPGMaker engine games
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)

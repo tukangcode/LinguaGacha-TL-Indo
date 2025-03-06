@@ -47,6 +47,7 @@
 - 在任务开始时，`LG` 将读取输入文件夹（及其子目录）内所有支持的文件，包括但是不限于：
   - 字幕（.srt .ass）
   - 电子书（.txt .epub）
+  - Markdown（.md）
   - [RenPy](https://www.renpy.org) 导出游戏文本（.rpy）
   - [MTool](https://afdian.com/a/AdventCirno) 导出游戏文本（.json）
   - [SExtractor](https://github.com/satan53x/SExtractor) 导出游戏文本（.txt .json .xlsx）
@@ -54,6 +55,11 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250306 v0.10.0
+  - 新增 - 支持 Mardown（.md） 文件
+  - 调整 - RenPy 兼容性优化
+  - 修正 - 尝试解决使用默认英文提示词时偶尔会并行的问题
+
 - 20250304 v0.9.3
   - 调整 - 标点修复逻辑调整
     - 现在尽可能的还原译文语言的标点使用习惯
@@ -72,14 +78,6 @@
     - 欢迎反馈这些新增语言的翻译质量情况与使用心得
   - 调整 - 支持 列表标签 及 EPUB3 目录
   - 调整 - 动态构造翻译指令目前只针对部分文本类型生效
-
-- 20250228 v0.8.1
-  - 修正 - 漏翻与代码检测逻辑上的细节问题
-
-- 20250228 v0.8.0
-  - 新增 - 动态构造翻译指令 功能
-    - 翻译引擎动态的分析每个任务的文本，生成对应的翻译指令
-    - 显著的提升了 RenPy 与 RPGMaker 引擎游戏的代码保留率
 
 ## 常见问题 📥
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系

@@ -50,6 +50,7 @@
 - 入力フォルダ内のすべての対応ファイル（サブディレクトリを含む）を処理：
   - 字幕 (.srt .ass)
   - 電子書籍 (.txt .epub)
+  - Markdown（.md）
   - [RenPy](https://www.renpy.org) エクスポート (.rpy)
   - [MTool](https://afdian.com/a/AdventCirno) エクスポート (.json)
   - [SExtractor](https://github.com/satan53x/SExtractor) エクスポート (.txt .json .xlsx)
