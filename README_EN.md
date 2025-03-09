@@ -59,7 +59,7 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
-- 20250310 v0.11.0
+- 20250310 v0.11.1
   - NEW - Smart carry-over of context from previous text
     - Automatically analyzes whether the previous text is semantically coherent and suitable for carry-over
     - Provides more semantic information while avoiding translation errors such as text misalignment

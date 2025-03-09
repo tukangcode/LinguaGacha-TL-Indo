@@ -55,7 +55,7 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
-- 20250310 v0.11.0
+- 20250310 v0.11.1
   - 新增 - 智能携带参考上文功能
     - 自动分析上文内容是否语义连贯、是否适宜携带
     - 在提供更多语义信息的同时，避免出现文本错位等翻译错误
