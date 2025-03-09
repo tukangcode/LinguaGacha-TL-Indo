@@ -59,6 +59,11 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250310 v0.11.0
+  - NEW - Smart carry-over of context from previous text
+    - Automatically analyzes whether the previous text is semantically coherent and suitable for carry-over
+    - Provides more semantic information while avoiding translation errors such as text misalignment
+
 - 20250309 v0.10.1
   - NEW - Automatic update check
   - NEW - Table support for multiple selection deletion and insertion
@@ -68,25 +73,6 @@
   - NEW - Added support for Markdown (.md) files
   - OPT - Optimized Ren'Py compatibility
   - FIX - Attempted to fix the occasional parallel processing issue when using the default English prompt
-
-- 20250304 v0.9.3
-  - OPT - Punctuation fixes, logical tweaks
-    - Now trying as much as possible to restore the punctuation habits of the translated language
-  - OPT - Force simplified Chinese output when traditional Chinese output is not enabled
-
-- 20250304 v0.9.2
-  - OPT - Keep as much of the original style as possible for EPUB
-  - Minor fix and update
-
-- 20250302 v0.9.1
-  - OPT - Significantly cut down on the number of rounds and time needed for translation
-
-- 20250302 v0.9.0
- - Internationalization Language Special
-   - Added support for `German`, `French`, `Spanish`, `Italian`, `Portuguese`, `Thai`, `Indonesian` and `Vietnamese`
-- Welcome to provide feedback on the translation quality and usage experience of these newly added languages
- - OPT - Support for list tags and EPUB3 table of contents.
- - OPT - Dynamically constructed translation commands currently only take effect for certain text types
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)
