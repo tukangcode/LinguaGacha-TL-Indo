@@ -55,10 +55,17 @@
   - [RenPy](https://www.renpy.org) exports (.rpy)
   - [MTool](https://afdian.com/a/AdventCirno) exports (.json)
   - [SExtractor](https://github.com/satan53x/SExtractor) exports (.txt .json .xlsx)
-  - [Translator++](https://dreamsavior.net/translator-plusplus) exports (.xlsx)
+  - [Translator++](https://dreamsavior.net/translator-plusplus) exports (.trans .xlsx)
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250310 v0.12.0
+  - NEW - Directly translate Translator project files (.trans) `AWESOME 👈👈`
+    - In this mode, for most RPGMaker MV/MZ games
+      - No need for any pre-processing or post-processing, just translation&export and you're ready to play
+    - For the few remaining complex games, or for advanced users seeking a perfect experience, it can also greatly reduce the amount of fine-tuning work.
+    - NEW AGE is HERE!
+
 - 20250310 v0.11.1
   - NEW - Smart carry-over of context from previous text
     - Automatically analyzes whether the previous text is semantically coherent and suitable for carry-over
