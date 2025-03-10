@@ -13,18 +13,21 @@ class TRANS(Base):
         re.compile(r"\.js$", flags = re.IGNORECASE),
     )
 
-    RM_EXCLUDED_RULE = (
+    RM_EXCLUDED_ADDRESS = (
         re.compile(r"/note/*", flags = re.IGNORECASE),
         re.compile(r"/script/*", flags = re.IGNORECASE),
         re.compile(r"/comment/*", flags = re.IGNORECASE),
-        re.compile(r"animations/\d+/name/*", flags = re.IGNORECASE),
-        re.compile(r"map\d+/events/\d+/name/*", flags = re.IGNORECASE),
+        re.compile(r"filename", flags = re.IGNORECASE),
+        re.compile(r"Tilesets/\d+/name", flags = re.IGNORECASE),
+        re.compile(r"MapInfos/\d+/name", flags = re.IGNORECASE),
+        re.compile(r"Animations/\d+/name", flags = re.IGNORECASE),
+        re.compile(r"Map\d+/events/\d+/name", flags = re.IGNORECASE),
     )
 
     WOLF_EXCLUDED_TAG = (
     )
 
-    WOLF_EXCLUDED_RULE = (
+    WOLF_EXCLUDED_ADDRESS = (
         re.compile(r"/note/*", flags = re.IGNORECASE),
         re.compile(r"/script/*", flags = re.IGNORECASE),
         re.compile(r"/comment/*", flags = re.IGNORECASE),
@@ -77,17 +80,17 @@ class TRANS(Base):
                 engine: str = project.get("gameEngine", "")
 
                 # 设置排除规则
-                if engine in ("2k", "rmxp", "rmvx", "rmvxace", "rmmv", "rmmz"):
+                if engine in ("2k", "RMJDB", "rmvx", "rmvxace", "rmmv", "rmmz"):
                     re_tag = TRANS.RM_EXCLUDED_TAG
-                    re_rule = TRANS.RM_EXCLUDED_RULE
+                    re_address = TRANS.RM_EXCLUDED_ADDRESS
                     text_type = CacheItem.TextType.RPGMAKER
                 elif engine in ("wolf", ""):
                     re_tag = TRANS.WOLF_EXCLUDED_TAG
-                    re_rule = TRANS.WOLF_EXCLUDED_RULE
+                    re_address = TRANS.WOLF_EXCLUDED_ADDRESS
                     text_type = CacheItem.TextType.NONE
                 else:
                     re_tag = ()
-                    re_rule = ()
+                    re_address = ()
                     text_type = CacheItem.TextType.NONE
 
                 # 处理数据
@@ -112,7 +115,7 @@ class TRANS(Base):
                                     "status": Base.TranslationStatus.EXCLUDED,
                                 })
                             )
-                        elif self.filter_by_tag(tag, re_tag) or self.filter_by_rule(context, re_rule):
+                        elif self.filter_by_tag(tag, re_tag) or self.filter_by_rule(context, re_address):
                             items.append(
                                 CacheItem({
                                     "src": data[0],
@@ -122,6 +125,7 @@ class TRANS(Base):
                                     "file_type": CacheItem.FileType.TRANS,
                                     "file_path": rel_path,
                                     "text_type": text_type,
+                                    "extra_field": "gold",
                                     "status": Base.TranslationStatus.EXCLUDED,
                                 })
                             )
@@ -176,10 +180,23 @@ class TRANS(Base):
 
                     # 处理数据
                     for tag in files.keys():
-                        json_data["project"]["files"][tag]["data"] = [
-                            [item.get_src(), item.get_dst()]
-                            for item in items if item.get_tag() == tag
-                        ]
+                        target_items = [item for item in items if item.get_tag() == tag]
+
+                        tags: list[str] = []
+                        data: list[str] = []
+                        for i, item in enumerate(target_items):
+                            data.append((item.get_src(), item.get_dst()))
+                            if i >= len(json_data["project"]["files"][tag]["tags"]):
+                                t = set()
+                            elif json_data["project"]["files"][tag]["tags"][i] is None:
+                                t = set()
+                            else:
+                                t = set(json_data["project"]["files"][tag]["tags"][i])
+                            if item.get_extra_field() != "":
+                                t.add(item.get_extra_field())
+                            tags.append(list(t))
+                        json_data["project"]["files"][tag]["tags"] = tags
+                        json_data["project"]["files"][tag]["data"] = data
 
                 # 写入文件
                 json.dump(json_data, writer, indent = 4, ensure_ascii = False)
