@@ -34,7 +34,7 @@
 - Compatible with AI model interfaces following `OpenAI`, `Google`, `Anthropic`, `SakuraLLM` standards
 - Compatible with [KeywordGacha](https://github.com/neavo/KeywordGacha) `👈👈 Next-generation tool for AI-powered glossary generation`
 
-## Workflow 🛸
+## Basic Workflow 🛸
 - Download application from [Releases page](https://github.com/neavo/LinguaGacha/releases)
 - Obtain a reliable AI model interface (choose one):
   - [Local API - Tutorial](https://github.com/neavo/OneClickLLAMA) (Free, requires ≥8GB VRAM GPU, Nvidia recommended)
@@ -45,7 +45,15 @@
 - Launch application via `app.exe`:
   - Configure essential settings (source/target languages) in `Project Settings`
   - Copy files to input folder (default: `input`), start translation in `Begin Translation`
-- Visit [Wiki](https://github.com/neavo/LinguaGacha/wiki) for detailed guides or share experiences in [Discussions](https://github.com/neavo/LinguaGacha/discussions)
+
+## User Guide 📝
+- Tutorials
+  - [RenPy Engine Game AI Localization Video Tutorial (Chinese)](https://space.bilibili.com/631729629/lists/4832968)
+  - [How to Translate RPGMV with LinguaGacha and Translator++ (English)](https://www.youtube.com/watch?v=wtV_IODzi8I)
+- Feature Descriptions
+  - [Glossary](https://github.com/neavo/LinguaGacha/wiki/%E6%9C%AF%E8%AF%AD%E8%A1%A8)　　[Pre-translation Replacement](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%89%8D%E6%9B%BF%E6%8D%A2)　　[Post-translation Replacement](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%90%8E%E6%9B%BF%E6%8D%A2)
+  - [MTool Optimizer](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer)
+- You can find more details on each feature in the [Wiki](https://github.com/neavo/LinguaGacha/wiki), and you are welcome to share your experience in the [Discussions](https://github.com/neavo/LinguaGacha/discussions).
 
 ## Supported Formats 🏷️
 - Processes all supported files in input folder (including subdirectories):
@@ -55,31 +63,27 @@
   - [RenPy](https://www.renpy.org) exports (.rpy)
   - [MTool](https://afdian.com/a/AdventCirno) exports (.json)
   - [SExtractor](https://github.com/satan53x/SExtractor) exports (.txt .json .xlsx)
-  - [Translator++](https://dreamsavior.net/translator-plusplus) exports (.trans .xlsx)
+  - [Translator++](https://dreamsavior.net/translator-plusplus) project (.trans)
+  - [Translator++](https://dreamsavior.net/translator-plusplus) exports (.xlsx)
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250311 v0.12.1
+  - OPT - Updated the default prompts and text filtering rules.
+    - Improved the ability to keep code intact
+    - Reduced instances of normal text being mistakenly flagged as code, and thus not getting translated (often seen in R1)
+
 - 20250310 v0.12.0
   - NEW - Directly translate Translator project files (.trans) `AWESOME 👈👈`
     - In this mode, for most RPGMaker MV/MZ games
       - No need for any pre-processing or post-processing, just translation&export and you're ready to play
-    - For the few remaining complex games, or for advanced users seeking a perfect experience, it can also greatly reduce the amount of fine-tuning work.
-    - NEW AGE is HERE!
+    - For the few remaining complex games, or for advanced users seeking a perfect experience, it can also greatly reduce the amount of fine-tuning work
+    - NEW AGE is HERE
 
 - 20250310 v0.11.1
   - NEW - Smart carry-over of context from previous text
     - Automatically analyzes whether the previous text is semantically coherent and suitable for carry-over
     - Provides more semantic information while avoiding translation errors such as text misalignment
-
-- 20250309 v0.10.1
-  - NEW - Automatic update check
-  - NEW - Table support for multiple selection deletion and insertion
-  - NEW - Subtitles and e-book files have a language suffix added when saving
-
-- 20250306 v0.10.0
-  - NEW - Added support for Markdown (.md) files
-  - OPT - Optimized Ren'Py compatibility
-  - FIX - Attempted to fix the occasional parallel processing issue when using the default English prompt
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)

@@ -30,7 +30,7 @@
 - 兼容 `OpenAI` `Google` `Anthropic` `SakuraLLM` 标准的 AI 大模型接口
 - 兼容 [KeywordGacha](https://github.com/neavo/KeywordGacha) `👈👈 使用 AI 能力一键生成术语表的次世代工具`
 
-## 使用流程 🛸
+## 基本流程 🛸
 - 从 [发布页](https://github.com/neavo/LinguaGacha/releases) 下载应用
 - 获取一个可靠的 AI 大模型接口，建议以下两种选择其一：
   - [本地接口 - 点击查看教程](https://github.com/neavo/OneClickLLAMA)，免费，需至少 8G 显存的独立显卡，Nvidia 显卡为佳
@@ -41,6 +41,16 @@
 - 双击 `app.exe` 启动应用
   - 在 `项目设置` 中设置原文语言、译文语言等必要信息
   - 将要翻译的文本文件复制到输入文件夹（默认为 `input` 文件夹），在 `开始翻译` 中点击开始翻译
+
+## 使用教程 📝
+- 图文教程
+  - [基础教程](https://github.com/neavo/LinguaGacha/wiki/BasicTutorial) `👈👈 手把手教学，有手就行，新手必看`
+- 视频教程
+  - [RenPy 引擎游戏 AI 汉化视频教程（中文）](https://space.bilibili.com/631729629/lists/4832968)
+  - [How to Translate RPGMV with LinguaGacha and Translator++ (English)](https://www.youtube.com/watch?v=wtV_IODzi8I)
+- 功能说明
+  - [术语表](https://github.com/neavo/LinguaGacha/wiki/%E6%9C%AF%E8%AF%AD%E8%A1%A8)　　[译前替换](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%89%8D%E6%9B%BF%E6%8D%A2)　　[译后替换](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%90%8E%E6%9B%BF%E6%8D%A2)
+  - [MTool 优化器](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer)
 - 你可以在 [Wiki](https://github.com/neavo/LinguaGacha/wiki) 找到各项功能的更详细介绍，也欢迎在 [讨论区](https://github.com/neavo/LinguaGacha/discussions) 投稿你的使用心得
 
 ## 文本格式 🏷️
@@ -51,10 +61,16 @@
   - [RenPy](https://www.renpy.org) 导出游戏文本（.rpy）
   - [MTool](https://afdian.com/a/AdventCirno) 导出游戏文本（.json）
   - [SExtractor](https://github.com/satan53x/SExtractor) 导出游戏文本（.txt .json .xlsx）
+  - [Translator++](https://dreamsavior.net/translator-plusplus) 项目文件（.trans）
   - [Translator++](https://dreamsavior.net/translator-plusplus) 导出游戏文本（.xlsx）
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250311 v0.12.1
+  - 调整 - 更新默认提示词与文本过滤规则
+    - 加强代码保留能力
+    - 减少正常文本被错判为代码导致的漏翻问题（常见于 R1）
+
 - 20250310 v0.12.0
   - 新增 - 直接翻译 Translator 项目文件（.trans） `重磅 👈👈`
     - 此模式下，对于大部分 RPGMaker MV/MZ 游戏而言
@@ -66,16 +82,6 @@
   - 新增 - 智能携带参考上文功能
     - 自动分析上文内容是否语义连贯、是否适宜携带
     - 在提供更多语义信息的同时，避免出现文本错位等翻译错误
-
-- 20250309 v0.10.1
-  - 新增 - 自动检查更新
-  - 新增 - 表格支持多选删除与插入操作
-  - 新增 - 字幕、电子书文件在保存时添加语言后缀
-
-- 20250306 v0.10.0
-  - 新增 - 支持 Mardown（.md） 文件
-  - 调整 - RenPy 兼容性优化
-  - 修正 - 尝试解决使用默认英文提示词时偶尔会并行的问题
 
 ## 常见问题 📥
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系
