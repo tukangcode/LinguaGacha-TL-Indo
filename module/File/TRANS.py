@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import itertools
 
 import rapidjson as json
 
@@ -9,28 +10,16 @@ from module.Cache.CacheItem import CacheItem
 
 class TRANS(Base):
 
-    RM_EXCLUDED_TAG = (
+    RPGMAKER_EXCLUDED_PATH = (
         re.compile(r"\.js$", flags = re.IGNORECASE),
     )
 
-    RM_EXCLUDED_ADDRESS = (
-        re.compile(r"/note/*", flags = re.IGNORECASE),
-        re.compile(r"/script/*", flags = re.IGNORECASE),
-        re.compile(r"/comment/*", flags = re.IGNORECASE),
+    RPGMAKER_EXCLUDED_ADDRESS = (
         re.compile(r"filename", flags = re.IGNORECASE),
         re.compile(r"Tilesets/\d+/name", flags = re.IGNORECASE),
         re.compile(r"MapInfos/\d+/name", flags = re.IGNORECASE),
         re.compile(r"Animations/\d+/name", flags = re.IGNORECASE),
         re.compile(r"Map\d+/events/\d+/name", flags = re.IGNORECASE),
-    )
-
-    WOLF_EXCLUDED_TAG = (
-    )
-
-    WOLF_EXCLUDED_ADDRESS = (
-        re.compile(r"/note/*", flags = re.IGNORECASE),
-        re.compile(r"/script/*", flags = re.IGNORECASE),
-        re.compile(r"/comment/*", flags = re.IGNORECASE),
     )
 
     def __init__(self, config: dict) -> None:
@@ -43,14 +32,21 @@ class TRANS(Base):
         self.source_language: str = config.get("source_language")
         self.target_language: str = config.get("target_language")
 
-    # 标签过滤
-    def filter_by_tag(self, tag: str, re_tag: list[re.Pattern]) -> bool:
-        return any(len(v.findall(tag)) > 0 for v in re_tag)
+    # 过滤
+    def filter_none(self, path: str, context: list[str]) -> bool:
+        return False
 
-    # 规则过滤
-    def filter_by_rule(self, context: list[str], re_rule: list[re.Pattern]) -> bool:
+    # 过滤 - Wolf
+    def filter_wolf(self, path: str, context: list[str]) -> bool:
+        return False
+
+    # 过滤 - RPGMaker
+    def filter_rpgmaker(self, path: str, context: list[str]) -> bool:
+        if any(len(v.findall(path)) > 0 for v in TRANS.RPGMAKER_EXCLUDED_PATH):
+            return True
+
         context = "\n".join(context)
-        for rule in re_rule:
+        for rule in TRANS.RPGMAKER_EXCLUDED_ADDRESS:
             if len(rule.findall(context)) > 0:
                 return True
 
@@ -80,24 +76,21 @@ class TRANS(Base):
                 engine: str = project.get("gameEngine", "")
 
                 # 设置排除规则
-                if engine in ("2k", "RMJDB", "rmvx", "rmvxace", "rmmv", "rmmz"):
-                    re_tag = TRANS.RM_EXCLUDED_TAG
-                    re_address = TRANS.RM_EXCLUDED_ADDRESS
+                if engine in ("wolf", ""):
+                    filter = TRANS.filter_wolf
+                    text_type = CacheItem.TextType.WOLF
+                elif engine in ("2k", "RMJDB", "rmvx", "rmvxace", "rmmv", "rmmz"):
+                    filter = TRANS.filter_rpgmaker
                     text_type = CacheItem.TextType.RPGMAKER
-                elif engine in ("wolf", ""):
-                    re_tag = TRANS.WOLF_EXCLUDED_TAG
-                    re_address = TRANS.WOLF_EXCLUDED_ADDRESS
-                    text_type = CacheItem.TextType.NONE
                 else:
-                    re_tag = ()
-                    re_address = ()
+                    filter = TRANS.filter_none
                     text_type = CacheItem.TextType.NONE
 
                 # 处理数据
-                for tag, entry in project.get("files", {}).items():
+                for path, entry in project.get("files", {}).items():
                     data: list[str] = []
                     context: list[str] = []
-                    for data, context in zip(entry.get("data", []), entry.get("context", [])):
+                    for data, tag, context in itertools.zip_longest(entry.get("data", []), entry.get("tags", []), entry.get("context", []), fillvalue = []):
                         # 有效性校验
                         if not isinstance(data, list) or len(data) == 0 or not isinstance(data[0], str):
                             continue
@@ -107,7 +100,7 @@ class TRANS(Base):
                                 CacheItem({
                                     "src": data[0],
                                     "dst": data[1],
-                                    "tag": tag,
+                                    "tag": path,
                                     "row": len(items),
                                     "file_type": CacheItem.FileType.TRANS,
                                     "file_path": rel_path,
@@ -115,12 +108,25 @@ class TRANS(Base):
                                     "status": Base.TranslationStatus.EXCLUDED,
                                 })
                             )
-                        elif self.filter_by_tag(tag, re_tag) or self.filter_by_rule(context, re_address):
+                        elif any(v in ("red", "blue") for v in tag or []):
                             items.append(
                                 CacheItem({
                                     "src": data[0],
                                     "dst": data[0],
-                                    "tag": tag,
+                                    "tag": path,
+                                    "row": len(items),
+                                    "file_type": CacheItem.FileType.TRANS,
+                                    "file_path": rel_path,
+                                    "text_type": text_type,
+                                    "status": Base.TranslationStatus.EXCLUDED,
+                                })
+                            )
+                        elif filter(self, path, context):
+                            items.append(
+                                CacheItem({
+                                    "src": data[0],
+                                    "dst": data[0],
+                                    "tag": path,
                                     "row": len(items),
                                     "file_type": CacheItem.FileType.TRANS,
                                     "file_path": rel_path,
@@ -134,7 +140,7 @@ class TRANS(Base):
                                 CacheItem({
                                     "src": data[0],
                                     "dst": data[0],
-                                    "tag": tag,
+                                    "tag": path,
                                     "row": len(items),
                                     "file_type": CacheItem.FileType.TRANS,
                                     "file_path": rel_path,
