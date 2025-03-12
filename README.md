@@ -48,9 +48,8 @@
 - 视频教程
   - [RenPy 引擎游戏 AI 汉化视频教程（中文）](https://space.bilibili.com/631729629/lists/4832968)
   - [How to Translate RPGMV with LinguaGacha and Translator++ (English)](https://www.youtube.com/watch?v=wtV_IODzi8I)
-- 功能说明
-  - [术语表](https://github.com/neavo/LinguaGacha/wiki/%E6%9C%AF%E8%AF%AD%E8%A1%A8)　　[译前替换](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%89%8D%E6%9B%BF%E6%8D%A2)　　[译后替换](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%90%8E%E6%9B%BF%E6%8D%A2)
-  - [MTool 优化器](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer)
+- 进阶教程
+  - [ [术语表](https://github.com/neavo/LinguaGacha/wiki/%E6%9C%AF%E8%AF%AD%E8%A1%A8) ] | [ [译前替换与译后替换](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%89%8D%E6%9B%BF%E6%8D%A2%E4%B8%8E%E8%AF%91%E5%90%8E%E6%9B%BF%E6%8D%A2) ] | [ [MTool 优化器](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer) ]
 - 你可以在 [Wiki](https://github.com/neavo/LinguaGacha/wiki) 找到各项功能的更详细介绍，也欢迎在 [讨论区](https://github.com/neavo/LinguaGacha/discussions) 投稿你的使用心得
 
 ## 文本格式 🏷️
@@ -66,6 +65,11 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250312 v0.12.2
+  - 调整 - 显著降低了并发任务数较高（>=128）时的性能消耗
+  - 调整 - 翻译 .trans 文件时，细化粒度以区分不同地址的相同文本条目
+  - 修正 - 修复了一些可能导致翻译时卡住的问题
+
 - 20250311 v0.12.1
   - 调整 - 更新默认提示词与文本过滤规则
     - 加强代码保留能力
