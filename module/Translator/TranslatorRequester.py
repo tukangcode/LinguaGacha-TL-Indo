@@ -1,9 +1,10 @@
 import threading
 
+import httpx
 import rapidjson as json
+import openai
 import anthropic
 import google.generativeai as genai
-from openai import OpenAI
 
 from base.Base import Base
 from module.Localizer.Localizer import Localizer
@@ -14,6 +15,12 @@ class TranslatorRequester(Base):
 
     # 类线程锁
     API_KEY_LOCK = threading.Lock()
+
+    # 客户端
+    SAKURA_CLIENTS: dict[str, openai.OpenAI] = {}
+    OPENAI_CLIENTS: dict[str, openai.OpenAI] = {}
+    GOOGLE_CLIENTS: dict[str, genai.GenerativeModel] = {}
+    ANTHROPIC_CLIENTS: dict[str, anthropic.Anthropic] = {}
 
     def __init__(self, config: dict, platform: dict, current_round: int) -> None:
         super().__init__()
@@ -71,33 +78,77 @@ class TranslatorRequester(Base):
 
         return skip, response_think, response_result, prompt_tokens, completion_tokens
 
-    # 轮询获取key列表里的key
-    def get_apikey(self) -> str:
-        # 如果密钥列表长度为 1，则直接返回固定密钥
-        # 如果密钥索引已达到最大长度，则重置索引，否则切换到下一个密钥
+    # 获取客户端
+    def get_client(self, platform: dict, timeout: int) -> openai.OpenAI | genai.GenerativeModel | anthropic.Anthropic:
         with TranslatorRequester.API_KEY_LOCK:
             # 初始化索引
-            if getattr(TranslatorRequester, "api_key_index", None) is None:
-                TranslatorRequester.api_key_index = 0
+            if getattr(TranslatorRequester, "_api_key_index", None) is None:
+                TranslatorRequester._api_key_index = 0
 
-            api_key = self.platform.get("api_key", [])
-            if len(api_key) == 1:
-                return api_key[0]
-            elif TranslatorRequester.api_key_index >= len(api_key) - 1:
-                TranslatorRequester.api_key_index = 0
-                return api_key[0]
+            # 轮询获取密钥
+            keys = platform.get("api_key", [])
+            if len(keys) == 1:
+                api_key = keys[0]
+            elif TranslatorRequester._api_key_index >= len(keys) - 1:
+                TranslatorRequester._api_key_index = 0
+                api_key = keys[0]
             else:
-                TranslatorRequester.api_key_index = TranslatorRequester.api_key_index + 1
-                return api_key[TranslatorRequester.api_key_index]
+                TranslatorRequester._api_key_index = TranslatorRequester._api_key_index + 1
+                api_key = keys[TranslatorRequester._api_key_index]
+
+            # 从缓存中获取客户端
+            if platform.get("api_format") == Base.APIFormat.SAKURALLM:
+                if api_key not in TranslatorRequester.SAKURA_CLIENTS:
+                    TranslatorRequester.SAKURA_CLIENTS[api_key] = openai.OpenAI(
+                        base_url = platform.get("api_url"),
+                        api_key = api_key,
+                        timeout = httpx.Timeout(timeout = timeout, connect = 10.0),
+                        max_retries = 1,
+                    )
+                return TranslatorRequester.SAKURA_CLIENTS.get(api_key)
+            elif platform.get("api_format") == Base.APIFormat.GOOGLE:
+                # Gemini SDK 文档 - https://ai.google.dev/api?hl=zh-cn&lang=python
+                if api_key not in TranslatorRequester.GOOGLE_CLIENTS:
+                    genai.configure(
+                        api_key = api_key,
+                        transport = "rest",
+                    )
+                    TranslatorRequester.GOOGLE_CLIENTS[api_key] = genai.GenerativeModel(
+                        model_name = platform.get("model"),
+                        safety_settings = [
+                            {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
+                            {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
+                            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
+                            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
+                        ],
+                    )
+                return TranslatorRequester.GOOGLE_CLIENTS.get(api_key)
+            elif platform.get("api_format") == Base.APIFormat.ANTHROPIC:
+                if api_key not in TranslatorRequester.ANTHROPIC_CLIENTS:
+                    TranslatorRequester.ANTHROPIC_CLIENTS[api_key] = anthropic.Anthropic(
+                        base_url = platform.get("api_url"),
+                        api_key = api_key,
+                        timeout = httpx.Timeout(timeout = timeout, connect = 10.0),
+                        max_retries = 1,
+                    )
+                return TranslatorRequester.ANTHROPIC_CLIENTS.get(api_key)
+            else:
+                if api_key not in TranslatorRequester.OPENAI_CLIENTS:
+                    TranslatorRequester.OPENAI_CLIENTS[api_key] = openai.OpenAI(
+                        base_url = platform.get("api_url"),
+                        api_key = api_key,
+                        timeout = httpx.Timeout(timeout = timeout, connect = 10.0),
+                        max_retries = 1,
+                    )
+                return TranslatorRequester.OPENAI_CLIENTS.get(api_key)
 
     # 发起请求
     def request_sakura(self, messages: list[dict], thinking: bool, temperature: float, top_p: float, pp: float, fp: float) -> tuple[bool, str, str, int, int]:
         try:
-            client = OpenAI(
-                base_url = self.platform.get("api_url"),
-                api_key = self.get_apikey(),
+            client: openai.OpenAI = self.get_client(
+                self.platform,
+                self.config.get("request_timeout"),
             )
-
             response = client.chat.completions.create(
                 model = self.platform.get("model"),
                 messages = messages,
@@ -105,7 +156,6 @@ class TranslatorRequester(Base):
                 temperature = temperature,
                 presence_penalty = pp,
                 frequency_penalty = fp,
-                timeout = self.config.get("request_timeout"),
                 max_tokens = max(512, self.config.get("task_token_limit")),
                 extra_query = {
                     "do_sample": True,
@@ -147,11 +197,10 @@ class TranslatorRequester(Base):
     # 发起请求
     def request_openai(self, messages: list[dict], thinking: bool, temperature: float, top_p: float, pp: float, fp: float) -> tuple[bool, str, str, int, int]:
         try:
-            client = OpenAI(
-                base_url = self.platform.get("api_url"),
-                api_key = self.get_apikey(),
+            client: openai.OpenAI = self.get_client(
+                self.platform,
+                self.config.get("request_timeout"),
             )
-
             response = client.chat.completions.create(
                 model = self.platform.get("model"),
                 messages = messages,
@@ -159,7 +208,6 @@ class TranslatorRequester(Base):
                 top_p = top_p,
                 presence_penalty = pp,
                 frequency_penalty = fp,
-                timeout = self.config.get("request_timeout"),
                 max_tokens = 4096,
                 extra_headers = {
                     "User-Agent": f"LinguaGacha/{VersionManager.VERSION} (https://github.com/neavo/LinguaGacha)"
@@ -199,24 +247,12 @@ class TranslatorRequester(Base):
     # 发起请求
     def request_google(self, messages: list[dict], thinking: bool, temperature: float, top_p: float, pp: float, fp: float) -> tuple[bool, str, int, int]:
         try:
-            # Gemini SDK 文档 - https://ai.google.dev/api?hl=zh-cn&lang=python
-            genai.configure(
-                api_key = self.get_apikey(),
-                transport = "rest",
+            client: genai.GenerativeModel = self.get_client(
+                self.platform,
+                self.config.get("request_timeout"),
             )
-            model = genai.GenerativeModel(
-                model_name = self.platform.get("model"),
-            )
-
-            # 提取回复的文本内容
-            response = model.generate_content(
+            response = client.generate_content(
                 messages,
-                safety_settings = [
-                    {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
-                    {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
-                    {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
-                ],
                 generation_config = genai.types.GenerationConfig(
                     temperature = temperature,
                     top_p = top_p,
@@ -225,6 +261,8 @@ class TranslatorRequester(Base):
                     max_output_tokens = 4096,
                 ),
             )
+
+            # 提取回复内容
             response_result = response.text
         except Exception as e:
             self.error(f"{Localizer.get().log_task_fail}", e)
@@ -247,11 +285,10 @@ class TranslatorRequester(Base):
     # 发起请求
     def request_anthropic(self, messages: list[dict], thinking: bool, temperature: float, top_p: float, pp: float, fp: float) -> tuple[bool, str, str, int, int]:
         try:
-            client = anthropic.Anthropic(
-                base_url = self.platform.get("api_url"),
-                api_key = self.get_apikey(),
+            client: anthropic.Anthropic = self.get_client(
+                self.platform,
+                self.config.get("request_timeout"),
             )
-
             # 根据是否为思考模式，选择不同的请求方式
             if thinking == True:
                 response = client.messages.create(
@@ -261,7 +298,6 @@ class TranslatorRequester(Base):
                         "type": "enabled",
                         "budget_tokens": 1024
                     },
-                    timeout = self.config.get("request_timeout"),
                     max_tokens = 4096,
                     extra_headers = {
                         "User-Agent": f"LinguaGacha/{VersionManager.VERSION} (https://github.com/neavo/LinguaGacha)"
@@ -273,7 +309,6 @@ class TranslatorRequester(Base):
                     messages = messages,
                     temperature = temperature,
                     top_p = top_p,
-                    timeout = self.config.get("request_timeout"),
                     max_tokens = 4096,
                     extra_headers = {
                         "User-Agent": f"LinguaGacha/{VersionManager.VERSION} (https://github.com/neavo/LinguaGacha)"
