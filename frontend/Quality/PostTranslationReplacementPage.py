@@ -40,7 +40,7 @@ class PostTranslationReplacementPage(QWidget, Base):
         # 根据应用语言加载默认设置
         if Localizer.get_app_language() == Base.Language.ZH:
             self.default = {
-                "post_translation_replacement_enable": True,
+                "post_translation_replacement_enable": False,
                 "post_translation_replacement_data" : [
                     {
                         "src": "…。",
@@ -66,7 +66,7 @@ class PostTranslationReplacementPage(QWidget, Base):
             }
         else:
             self.default = {
-                "post_translation_replacement_enable": True,
+                "post_translation_replacement_enable": False,
                 "post_translation_replacement_data" : [
                     {
                         "src": "…。",

@@ -41,7 +41,7 @@ class GlossaryPage(QWidget, Base):
         # 根据应用语言加载默认设置
         if Localizer.get_app_language() == Base.Language.ZH:
             self.default = {
-                "glossary_enable": True,
+                "glossary_enable": False,
                 "glossary_data": [
                     {
                         "src": "ダリヤ",
@@ -52,7 +52,7 @@ class GlossaryPage(QWidget, Base):
             }
         else:
             self.default = {
-                "glossary_enable": True,
+                "glossary_enable": False,
                 "glossary_data": [
                     {
                         "src": "ダリヤ",

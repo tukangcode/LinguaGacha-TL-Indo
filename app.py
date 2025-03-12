@@ -1,8 +1,10 @@
 import os
 import sys
+import ctypes
 import traceback
 
 import rapidjson as json
+from rich.console import Console
 from PyQt5.QtGui import QFont
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
@@ -42,6 +44,22 @@ if __name__ == "__main__":
     # 捕获全局异常
     sys.excepthook = excepthook
 
+    # 当运行在 Windows 系统且没有运行在新终端时，禁用快速编辑模式
+    if os.name == "nt" and Console().color_system != "truecolor":
+        user32 = ctypes.windll.user32
+        kernel32 = ctypes.windll.kernel32
+
+        # 获取控制台句柄
+        hStdin = kernel32.GetStdHandle(-10)
+        mode = ctypes.c_ulong()
+
+        # 获取当前控制台模式
+        if kernel32.GetConsoleMode(hStdin, ctypes.byref(mode)):
+            # 清除启用快速编辑模式的标志 (0x0040)
+            mode.value &= ~0x0040
+            # 设置新的控制台模式
+            kernel32.SetConsoleMode(hStdin, mode)
+
     # 启用了高 DPI 缩放
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
@@ -52,14 +70,14 @@ if __name__ == "__main__":
     sys.path.append(script_dir)
 
     # 创建文件夹
-    os.makedirs("./input", exist_ok = True)
-    os.makedirs("./output", exist_ok = True)
+    os.makedirs("./input", exist_ok=True)
+    os.makedirs("./output", exist_ok=True)
 
     # 载入配置文件
     config = load_config()
 
     # 加载版本号
-    with open("version.txt", "r", encoding = "utf-8-sig") as reader:
+    with open("version.txt", "r", encoding="utf-8-sig") as reader:
         version = reader.read().strip()
 
     # 设置主题
