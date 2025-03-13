@@ -37,8 +37,9 @@
 ## Basic Workflow 🛸
 - Download application from [Releases page](https://github.com/neavo/LinguaGacha/releases)
 - Obtain a reliable AI model interface (choose one):
-  - [Local API - Tutorial](https://github.com/neavo/OneClickLLAMA) (Free, requires ≥8GB VRAM GPU, Nvidia recommended)
-  - [DeepSeek - Tutorial](https://github.com/neavo/LinguaGacha/wiki/DeepSeek) (Paid, cost-effective, fast, high-quality, no GPU required) `👈👈 Recommended`
+  - [ [Local API](https://github.com/neavo/OneClickLLAMA) ] (Free, requires ≥8GB VRAM GPU, Nvidia recommended)
+  - [ [DeepSeek API](https://github.com/neavo/LinguaGacha/wiki/DeepSeek) ] (Paid, cost-effective, fast, high-quality, no GPU required) `👈👈 Recommended`
+  - [ [Google Gemini API](https://aistudio.google.com/) ] (Paid, cost-effective, fast, relatively-high-quality, no GPU required) `👈👈 Recommended`
 - Prepare source text:
   - `Subtitles`/`E-books` typically require no preprocessing
   - `Game texts` need extraction using appropriate tools for specific game engines
@@ -47,12 +48,13 @@
   - Copy files to input folder (default: `input`), start translation in `Begin Translation`
 
 ## User Guide 📝
-- Tutorials
-  - [RenPy Engine Game AI Localization Video Tutorial (Chinese)](https://space.bilibili.com/631729629/lists/4832968)
+- Text Tutorial
+  - [Basic Tutorial](https://github.com/neavo/LinguaGacha/wiki/BasicTutorial)　`👈👈 Step-by-step tutorial, easy to follow, a must-read for beginners`
+- Video Tutorial
   - [How to Translate RPGMV with LinguaGacha and Translator++ (English)](https://www.youtube.com/watch?v=wtV_IODzi8I)
-- Feature Descriptions
-  - [Glossary](https://github.com/neavo/LinguaGacha/wiki/%E6%9C%AF%E8%AF%AD%E8%A1%A8)　　[Pre-translation Replacement](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%89%8D%E6%9B%BF%E6%8D%A2)　　[Post-translation Replacement](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%90%8E%E6%9B%BF%E6%8D%A2)
-  - [MTool Optimizer](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer)
+- Advance Tutorial
+  - [Glossary](https://github.com/neavo/LinguaGacha/wiki/Glossary-%E2%80%90-EN)　　[Replacement](https://github.com/neavo/LinguaGacha/wiki/Replacement-%E2%80%90-EN)　　[MTool Optimizer](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer-%E2%80%90-EN)
+  - [Best Practices for High-Quality Translation of RPGMaker Series Engine Games](https://github.com/neavo/LinguaGacha/wiki/BestPracticeForRPGMaker-%E2%80%90-EN)
 - You can find more details on each feature in the [Wiki](https://github.com/neavo/LinguaGacha/wiki), and you are welcome to share your experience in the [Discussions](https://github.com/neavo/LinguaGacha/discussions).
 
 ## Supported Formats 🏷️
@@ -61,13 +63,17 @@
   - E-books (.txt .epub)
   - Markdown（.md）
   - [RenPy](https://www.renpy.org) exports (.rpy)
-  - [MTool](https://afdian.com/a/AdventCirno) exports (.json)
+  - [MTool](https://mtool.app) exports (.json)
   - [SExtractor](https://github.com/satan53x/SExtractor) exports (.txt .json .xlsx)
   - [Translator++](https://dreamsavior.net/translator-plusplus) project (.trans)
   - [Translator++](https://dreamsavior.net/translator-plusplus) exports (.xlsx)
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250313 v0.12.3
+  - OPT - If a data entry in the .trans file has a AQUA tag, force re-translation
+  - FIX - Compatibility issues on some .trans files
+
 - 20250312 v0.12.2
   - OPT - Performance overhead is way down when there's a lot of concurrent tasks (>=128).
   - OPT - When translating .trans files, it's more granular now, to tell apart identical text entries from different addresses.

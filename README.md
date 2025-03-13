@@ -32,9 +32,10 @@
 
 ## 基本流程 🛸
 - 从 [发布页](https://github.com/neavo/LinguaGacha/releases) 下载应用
-- 获取一个可靠的 AI 大模型接口，建议以下两种选择其一：
-  - [本地接口 - 点击查看教程](https://github.com/neavo/OneClickLLAMA)，免费，需至少 8G 显存的独立显卡，Nvidia 显卡为佳
-  - [DeepSeek - 点击查看教程](https://github.com/neavo/LinguaGacha/wiki/DeepSeek)，需付费但便宜，速度快，质量高，无显卡要求 `👈👈 推荐`
+- 获取一个可靠的 AI 大模型接口，建议选择其一：
+  - [ [本地接口](https://github.com/neavo/OneClickLLAMA) ]，免费，需至少 8G 显存的独立显卡，Nvidia 显卡为佳
+  - [ [火山引擎](https://github.com/neavo/LinguaGacha/wiki/VolcEngine) ]，需付费但便宜，速度快，质量高，无显卡要求 `👈👈 推荐`
+  - [ [DeepSeek](https://github.com/neavo/LinguaGacha/wiki/DeepSeek) ]，需付费但便宜，速度快，质量高，无显卡要求 `👈👈 推荐`
 - 准备要翻译的文本
   - `字幕`、`电子书` 等一般不需要预处理
   - `游戏文本` 需要根据游戏引擎选择合适的工具进行提取
@@ -44,12 +45,13 @@
 
 ## 使用教程 📝
 - 图文教程
-  - [基础教程](https://github.com/neavo/LinguaGacha/wiki/BasicTutorial) `👈👈 手把手教学，有手就行，新手必看`
+  - [基础教程](https://github.com/neavo/LinguaGacha/wiki/BasicTutorial)　`👈👈 手把手教学，有手就行，新手必看`
 - 视频教程
-  - [RenPy 引擎游戏 AI 汉化视频教程（中文）](https://space.bilibili.com/631729629/lists/4832968)
   - [How to Translate RPGMV with LinguaGacha and Translator++ (English)](https://www.youtube.com/watch?v=wtV_IODzi8I)
 - 进阶教程
-  - [ [术语表](https://github.com/neavo/LinguaGacha/wiki/%E6%9C%AF%E8%AF%AD%E8%A1%A8) ] | [ [译前替换与译后替换](https://github.com/neavo/LinguaGacha/wiki/%E8%AF%91%E5%89%8D%E6%9B%BF%E6%8D%A2%E4%B8%8E%E8%AF%91%E5%90%8E%E6%9B%BF%E6%8D%A2) ] | [ [MTool 优化器](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer) ]
+  - [术语表](https://github.com/neavo/LinguaGacha/wiki/Glossary)　　[文本替换](https://github.com/neavo/LinguaGacha/wiki/Replacement)　　[MTool 优化器](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer)
+  - [高质量翻译 RenPy 引擎游戏的最佳实践](https://github.com/neavo/LinguaGacha/wiki/BestPracticeForRenPy)
+  - [高质量翻译 RPGMaker 系列引擎游戏的最佳实践](https://github.com/neavo/LinguaGacha/wiki/BestPracticeForRPGMaker)
 - 你可以在 [Wiki](https://github.com/neavo/LinguaGacha/wiki) 找到各项功能的更详细介绍，也欢迎在 [讨论区](https://github.com/neavo/LinguaGacha/discussions) 投稿你的使用心得
 
 ## 文本格式 🏷️
@@ -58,13 +60,17 @@
   - 电子书（.txt .epub）
   - Markdown（.md）
   - [RenPy](https://www.renpy.org) 导出游戏文本（.rpy）
-  - [MTool](https://afdian.com/a/AdventCirno) 导出游戏文本（.json）
+  - [MTool](https://mtool.app) 导出游戏文本（.json）
   - [SExtractor](https://github.com/satan53x/SExtractor) 导出游戏文本（.txt .json .xlsx）
   - [Translator++](https://dreamsavior.net/translator-plusplus) 项目文件（.trans）
   - [Translator++](https://dreamsavior.net/translator-plusplus) 导出游戏文本（.xlsx）
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250313 v0.12.3
+  - 调整 - 如果 .trans 文件中的数据条目包含 水蓝色 标签，则强制重新翻译
+  - 修正 - 部分 .trans 文件上的兼容性问题
+
 - 20250312 v0.12.2
   - 调整 - 显著降低了并发任务数较高（>=128）时的性能消耗
   - 调整 - 翻译 .trans 文件时，细化粒度以区分不同地址的相同文本条目
