@@ -70,6 +70,11 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250315 v0.13.0
+  - NEW - Partial Retranslation Feature
+    - Retranslates parts of completed translations based on set filter conditions.
+    - Primarily for content updates or bug fixes in subtitles, ebooks, etc.
+
 - 20250313 v0.12.3
   - OPT - If a data entry in the .trans file has a AQUA tag, force re-translation
   - FIX - Compatibility issues on some .trans files
@@ -90,11 +95,6 @@
       - No need for any pre-processing or post-processing, just translation&export and you're ready to play
     - For the few remaining complex games, or for advanced users seeking a perfect experience, it can also greatly reduce the amount of fine-tuning work
     - NEW AGE is HERE
-
-- 20250310 v0.11.1
-  - NEW - Smart carry-over of context from previous text
-    - Automatically analyzes whether the previous text is semantically coherent and suitable for carry-over
-    - Provides more semantic information while avoiding translation errors such as text misalignment
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)
