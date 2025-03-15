@@ -67,10 +67,16 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250316 v0.13.1
+  - 调整 - 增加了新的清理规则
+    - 注音代码 `<Ruby>`
+  - 调整 - 部分重翻支持 RENPY 文件
+  - 修正 - 部分翻译时 EPUB 不能正确输出双语的问题
+
 - 20250315 v0.13.0
   - 新增 - 部分重翻 功能
-    - 根据设置的筛选条件，重新对已完成的翻译文本中的部分内容进行翻译。
-    - 主要用于 字幕、电子书 等的内容更新或错误修正。
+    - 根据设置的筛选条件，重新对已完成的翻译文本中的部分内容进行翻译
+    - 主要用于 字幕、电子书 等的内容更新或错误修正
 
 - 20250313 v0.12.3
   - 调整 - 如果 .trans 文件中的数据条目包含 水蓝色 标签，则强制重新翻译
@@ -95,8 +101,9 @@
 
 ## 常见问题 📥
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系
-  - `LinguaGacha` 是吸取了 `AiNiee` 的经验以后开发的全新的翻译器应用
-  - `LinguaGacha` 的作者也是 `AiNiee v5` 的主要开发与维护者之一
+  - `LinguaGacha` 的作者是 `AiNiee v5` 的主要开发与维护者之一
+  - `LinguaGacha` 并不是 `AiNiee` 的分支版本，而是在 `AiNiee` 的踩坑经验上开发的全新翻译器应用
+  - 更简单，同时更强大
 
 ## 问题反馈 😥
 - 运行时的日志保存在应用根目录下的 `log` 等文件夹

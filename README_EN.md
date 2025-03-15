@@ -70,19 +70,25 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250316 v0.13.1
+  - OPT - Added some new cleanup rules
+    - Annotation code `<Ruby>`
+  - OPT - Some re-translation support for RENPY files
+  - FIX - Some cases where EPUB wasn't outputting bilingual text correctly during translation
+
 - 20250315 v0.13.0
   - NEW - Partial Retranslation Feature
-    - Retranslates parts of completed translations based on set filter conditions.
-    - Primarily for content updates or bug fixes in subtitles, ebooks, etc.
+    - Retranslates parts of completed translations based on set filter conditions
+    - Primarily for content updates or bug fixes in subtitles, ebooks, etc
 
 - 20250313 v0.12.3
   - OPT - If a data entry in the .trans file has a AQUA tag, force re-translation
   - FIX - Compatibility issues on some .trans files
 
 - 20250312 v0.12.2
-  - OPT - Performance overhead is way down when there's a lot of concurrent tasks (>=128).
-  - OPT - When translating .trans files, it's more granular now, to tell apart identical text entries from different addresses.
-  - FIX - Fixed some problems that could cause translation to get stuck.
+  - OPT - Performance overhead is way down when there's a lot of concurrent tasks (>=128)
+  - OPT - When translating .trans files, it's more granular now, to tell apart identical text entries from different addresses
+  - FIX - Fixed some problems that could cause translation to get stuck
 
 - 20250311 v0.12.1
   - OPT - Updated the default prompts and text filtering rules.
@@ -98,8 +104,9 @@
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)
-  - `LinguaGacha` is a complete rewrite incorporating lessons from `AiNiee`
   - `LinguaGacha`'s developer was a main contributor to `AiNiee v5`
+  - `LinguaGacha` is not a fork version of `AiNiee`, it's a new app built upon the lessons learned from `AiNiee`
+  - It's simpler, and it's more powerful
 
 ## Support 😥
 - Runtime logs are stored in `log` folder
