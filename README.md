@@ -93,8 +93,9 @@
 ## 常见问题 📥
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系
   - `LinguaGacha` 的作者是 `AiNiee v5` 的主要开发与维护者之一
-  - `LinguaGacha` 并不是 `AiNiee` 的分支版本，而是在 `AiNiee` 的踩坑经验上开发的全新翻译器应用
-  - 更简单，也更强大，功能的强大，并不需要通过繁琐的设置选项来体现
+  - `AiNiee v5` 及延用至 `AiNiee v6` 版的 UI 框架是由作者设计和主要负责开发的
+  - 这也是两者 UI 相似的原因，因为作者已经没有灵感再重新设计一套了，求放过 🤣
+  - 但是，`LinguaGacha` 并不是 `AiNiee` 的分支版本，而是在其经验上开发的全新翻译器应用
 
 ## 问题反馈 😥
 - 运行时的日志保存在应用根目录下的 `log` 等文件夹
