@@ -4,7 +4,6 @@ import opencc
 import rapidjson as json
 
 from base.Base import Base
-from module.File.FileManager import FileManager
 from module.Text.TextHelper import TextHelper
 from module.Cache.CacheItem import CacheItem
 from module.CodeSaver import CodeSaver
@@ -39,9 +38,16 @@ class ResultChecker(Base):
         pre_translation_replacement_enable: bool = config.get("pre_translation_replacement_enable")
         for item in self.items:
             src = item.get_src()
-            if pre_translation_replacement_enable == True and len(pre_translation_replacement_data) > 0:
+
+            # 只对已翻译的条目执行替换，以避免手动导出时检查结果异常
+            if (
+                item.get_status() == Base.TranslationStatus.TRANSLATED
+                and pre_translation_replacement_enable == True
+                and len(pre_translation_replacement_data) > 0
+            ):
                 for v in pre_translation_replacement_data:
                     src = src.replace(v.get("src"), v.get("dst"))
+
             self.rpls.append(src)
 
     # 检查

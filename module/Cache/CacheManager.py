@@ -152,17 +152,7 @@ class CacheManager(Base):
 
     # 复制缓存数据
     def copy_items(self) -> list[CacheItem]:
-        return [CacheItem({
-            "src": item.get_src(),
-            "dst": item.get_dst(),
-            "extra_field": item.get_extra_field(),
-            "tag": item.get_tag(),
-            "row": item.get_row(),
-            "file_type": item.get_file_type(),
-            "file_path": item.get_file_path(),
-            "status": item.get_status(),
-            "retry_count": item.get_retry_count(),
-        }) for item in self.items]
+        return [CacheItem(item.get_vars()) for item in self.items]
 
     # 获取缓存数据数量（根据翻译状态）
     def get_item_count_by_status(self, status: int) -> int:

@@ -220,6 +220,10 @@ class Translator(Base):
             # 生成缓存数据条目片段
             chunks, preceding_chunks = self.cache_manager.generate_item_chunks(self.config.get("task_token_limit"))
 
+            # 仅在第一轮启用参考上文功能
+            if current_round > 0:
+                preceding_chunks = [[] for _ in range(len(preceding_chunks))]
+
             # 生成翻译任务
             tasks: list[TranslatorTask] = []
             self.print("")
@@ -402,18 +406,11 @@ class Translator(Base):
                 dst = item.get_dst()
                 if src.count("\n") > 0:
                     for src_line, dst_line in zip_longest(src.splitlines(), dst.splitlines(), fillvalue = ""):
-                        items.append(
-                            CacheItem({
-                                "src" : src_line.strip(),
-                                "dst" : dst_line.strip(),
-                                "extra_field" : item.get_extra_field(),
-                                "tag" : item.get_tag(),
-                                "row" : len(items_by_file_path),
-                                "file_type" : item.get_file_type(),
-                                "file_path" : item.get_file_path(),
-                                "status" : item.get_status(),
-                            })
-                        )
+                        item_ex = CacheItem(item.get_vars())
+                        item_ex.set_src(src_line.strip())
+                        item_ex.set_dst(dst_line.strip())
+                        item_ex.set_row(len(items_by_file_path))
+                        items.append(item_ex)
 
     # 检查结果并写入文件
     def check_and_wirte_result(self, items: list[CacheItem]) -> None:

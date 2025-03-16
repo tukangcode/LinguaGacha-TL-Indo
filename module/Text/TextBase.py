@@ -49,7 +49,11 @@ class TextBase:
             (0x3040, 0x309F),                           # 平假名
         )
         for c in range(start, end + 1)
-        if not (0xFF01 <= c <= 0xFF60 or 0x3000 <= c <= 0x303F)  # 排除全角标点符号
+        if not (
+            0xFF01 <= c <= 0xFF60                       # 排除全角标点符号
+            or 0x3000 <= c <= 0x303F                    # 排除全角标点符号
+            or c in (0x309B, 0x309C)                    # 排除 0x309B 濁点 ゛ 0x309C 半濁点 ゜
+        )
     }
 
     # 片假名（剔除全角标点符号）
@@ -61,16 +65,11 @@ class TextBase:
             (0x31F0, 0x31FF),                          # 片假名语音扩展
         )
         for c in range(start, end + 1)
-        if not (0xFF01 <= c <= 0xFF60 or 0x3000 <= c <= 0x303F)  # 排除全角标点符号
-    }
-
-    # 濁音和半浊音符号 (Japanese Voiced Sound Marks)
-    JA_VOICED_SOUND_MARKS_SET = {
-        chr(0x309B),                                    # 濁点
-        chr(0x309C),                                    # 半濁点
-        chr(0x3005),                                    # 日文迭代标记 (々) - 汉字迭代 (虽然不完全是假名，但在日语文本处理中常见)
-        chr(0x30FD),                                    # 平假名迭代标记 (ゝ)
-        chr(0x30FE),                                    # 平假名浊音迭代标记 (ゞ)
+        if not (
+            0xFF01 <= c <= 0xFF60                       # 排除全角标点符号
+            or 0x3000 <= c <= 0x303F                    # 排除全角标点符号
+            or c == 0x30FB                              # 排除中点 ・
+        )
     }
 
     # 俄文字符
@@ -201,7 +200,7 @@ class JA(TextBase):
         return all(self.katakana(c) for c in text)
 
     def char(self, c: str) -> bool:
-        return self.CJK.char(c) or self.hiragana(c) or self.katakana(c) or c in TextBase.JA_VOICED_SOUND_MARKS_SET
+        return self.CJK.char(c) or self.hiragana(c) or self.katakana(c)
 
 # 韩文
 class KO(TextBase):
