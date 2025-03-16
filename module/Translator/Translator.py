@@ -10,16 +10,15 @@ import httpx
 from tqdm import tqdm
 
 from base.Base import Base
-from module.File.FileChecker import FileChecker
 from module.File.FileManager import FileManager
-from module.Filter.LanguageFilter import LanguageFilter
 from module.Cache.CacheItem import CacheItem
 from module.Cache.CacheManager import CacheManager
 from module.Filter.RuleFilter import RuleFilter
-from module.CodeSaver import CodeSaver
+from module.Filter.LanguageFilter import LanguageFilter
 from module.Localizer.Localizer import Localizer
 from module.Translator.TranslatorTask import TranslatorTask
 from module.PromptBuilder import PromptBuilder
+from module.ResultChecker import ResultChecker
 
 # 翻译器
 class Translator(Base):
@@ -418,19 +417,8 @@ class Translator(Base):
 
     # 检查结果并写入文件
     def check_and_wirte_result(self, items: list[CacheItem]) -> None:
-        # 清理一下
-        os.makedirs(self.config.get("output_folder"), exist_ok = True)
-        [
-            os.remove(entry.path)
-            for entry in os.scandir(self.config.get("output_folder"))
-            if entry.is_file() and entry.name.startswith(("结果检查_", "result_check_"))
-        ]
-
         # 检查结果
-        result_check = FileChecker(self.config, items)
-        result_check.check_code(Localizer.get().path_result_check_code, CodeSaver())
-        result_check.check_glossary(Localizer.get().path_result_check_glossary)
-        result_check.check_untranslated(Localizer.get().path_result_check_untranslated)
+        ResultChecker(self.config, items).check()
 
         # 写入文件
         FileManager(self.config).write_to_path(items)
