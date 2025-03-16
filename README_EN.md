@@ -70,6 +70,13 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250316 v0.14.0
+  - Translation Quality Focus Release
+    - ADD - Result check now detects residual `Kana` and `Hangul`
+    - OPT - Further enhanced code preservation
+    - OPT - Significantly improved translation quality, especially for interjections and proper nouns
+      - Highly recommended for all Volcengine DeepSeek users
+
 - 20250316 v0.13.2
   - FIX - Some game engine types in the TRANS file could not be recognized
 
