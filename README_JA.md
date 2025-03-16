@@ -71,7 +71,7 @@
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) と [AiNiee](https://github.com/NEKOparapa/AiNiee) の関係
   - `LinguaGacha` の作者は `AiNiee v5` の主要な開発およびメンテナンス担当者の一人です
   - `LinguaGacha` は `AiNiee` の派生ではなく、`AiNiee` の経験を基に開発された、よりシンプルで強力な、全く新しい翻訳アプリです
-  - よりシンプルで、より強力です。
+  - よりシンプルに、よりパワフルに。機能の強力さは、煩雑な設定を必要としません。
 
 ## サポート 😥
 - 実行時のログは `log` フォルダに保存されます

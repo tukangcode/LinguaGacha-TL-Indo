@@ -10,9 +10,9 @@
 
 ## Overview 📢
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) (/ˈlɪŋɡwə ˈɡɑːtʃə/), abbreviated as `LG`, is an AI-powered next-generation text translator
-- Out of the box, (almost) no setup needed, powerful functionality that doesn't need complicated settings to show it off.
+- Out of the box, (almost) no setup needed, powerful does not need to be shown through complicated setting options
 - Supports one-click translation between 13 languages
-  - including `Chinese`, `English`, `Japanese`, `Korean`, `Russian`, `German`, `French`, `Italian`, etc.
+  - including `Chinese`, `English`, `Japanese`, `Korean`, `Russian`, `German`, `French`, `Italian`, etc
 - Supports various text types and formats such as `subtitles`, `e-books`, and `game text`
 - Supports both local and online interfaces such as `Claude`, `ChatGPT`, `DeepSeek`, `SakuraLLM`
 
@@ -55,7 +55,7 @@
 - Advance Tutorial
   - [Glossary](https://github.com/neavo/LinguaGacha/wiki/Glossary-%E2%80%90-EN)　　[Replacement](https://github.com/neavo/LinguaGacha/wiki/Replacement-%E2%80%90-EN)　　[MTool Optimizer](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer-%E2%80%90-EN)
   - [Best Practices for High-Quality Translation of RPGMaker Series Engine Games](https://github.com/neavo/LinguaGacha/wiki/BestPracticeForRPGMaker-%E2%80%90-EN)
-- You can find more details on each feature in the [Wiki](https://github.com/neavo/LinguaGacha/wiki), and you are welcome to share your experience in the [Discussions](https://github.com/neavo/LinguaGacha/discussions).
+- You can find more details on each feature in the [Wiki](https://github.com/neavo/LinguaGacha/wiki), and you are welcome to share your experience in the [Discussions](https://github.com/neavo/LinguaGacha/discussions)
 
 ## Supported Formats 🏷️
 - Processes all supported files in input folder (including subdirectories):
@@ -70,6 +70,9 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250316 v0.13.2
+  - FIX - Some game engine types in the TRANS file could not be recognized
+
 - 20250316 v0.13.1
   - OPT - Added some new cleanup rules
     - Annotation code `<Ruby>`
@@ -90,23 +93,11 @@
   - OPT - When translating .trans files, it's more granular now, to tell apart identical text entries from different addresses
   - FIX - Fixed some problems that could cause translation to get stuck
 
-- 20250311 v0.12.1
-  - OPT - Updated the default prompts and text filtering rules.
-    - Improved the ability to keep code intact
-    - Reduced instances of normal text being mistakenly flagged as code, and thus not getting translated (often seen in R1)
-
-- 20250310 v0.12.0
-  - NEW - Directly translate Translator project files (.trans) `AWESOME 👈👈`
-    - In this mode, for most RPGMaker MV/MZ games
-      - No need for any pre-processing or post-processing, just translation&export and you're ready to play
-    - For the few remaining complex games, or for advanced users seeking a perfect experience, it can also greatly reduce the amount of fine-tuning work
-    - NEW AGE is HERE
-
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)
   - `LinguaGacha`'s developer was a main contributor to `AiNiee v5`
   - `LinguaGacha` is not a fork version of `AiNiee`, it's a new app built upon the lessons learned from `AiNiee`
-  - It's simpler, and it's more powerful
+  - It's simpler, and it's more powerful. Powerful does not need to be shown through complicated setting options
 
 ## Support 😥
 - Runtime logs are stored in `log` folder
