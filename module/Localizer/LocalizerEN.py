@@ -231,6 +231,18 @@ class LocalizerEN(LocalizerBase):
     translation_page_export_toast = "Translation files have been generated in the output folder based on the current translation data ..."
     translation_page_timer = "Waiting time before delayed startup"
 
+    # 新增：暂停/恢复功能
+    translation_page_pause_title = "Set Pause Duration"
+    translation_page_pause = "Pause"
+    translation_page_pause_toast = "Translation task paused, will resume in {TIME} seconds ..."
+    translation_page_resume = "Resume"
+    translation_page_resume_toast = "Translation task resumed ..."
+
+    # 新增：错误消息
+    translation_page_error_timeout = "Translation task timed out, stopped ..."
+    translation_page_error_failed = "Translation task failed, please check logs ..."
+    translation_page_error_stopped = "Translation task stopped ..."
+
     # 基础设置
     basic_settings_page_batch_size_title = "Concurrent Tasks"
     basic_settings_page_batch_size_content = (

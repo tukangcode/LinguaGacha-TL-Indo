@@ -1,5 +1,3 @@
-
-
 class LocalizerBase():
 
     # 保留
@@ -230,6 +228,18 @@ class LocalizerBase():
     translation_page_export = "导出翻译数据"
     translation_page_export_toast = "已根据当前的翻译数据在输出文件夹下生成翻译文件 ..."
     translation_page_timer = "请设置延迟启动前要等待的时间"
+
+    # 新增：暂停/恢复功能
+    translation_page_pause_title = "设置暂停时间"
+    translation_page_pause = "暂停"
+    translation_page_pause_toast = "翻译任务已暂停，将在 {TIME} 秒后恢复 ..."
+    translation_page_resume = "恢复"
+    translation_page_resume_toast = "翻译任务已恢复 ..."
+
+    # 新增：错误消息
+    translation_page_error_timeout = "翻译任务超时，已停止 ..."
+    translation_page_error_failed = "翻译任务失败，请检查日志 ..."
+    translation_page_error_stopped = "翻译任务已停止 ..."
 
     # 基础设置
     basic_settings_page_batch_size_title = "并发任务数"

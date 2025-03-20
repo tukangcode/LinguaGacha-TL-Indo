@@ -31,7 +31,7 @@ from widget.CommandBarCard import CommandBarCard
 class TimerMessageBox(MessageBoxBase):
 
     def __init__(self, parent, title: str, message_box_close: Callable = None) -> None:
-        super().__init__(parent = parent)
+        super().__init__(parent=parent)
 
         # 初始化
         self.delay = 0
@@ -42,7 +42,7 @@ class TimerMessageBox(MessageBoxBase):
         self.cancelButton.setText(Localizer.get().cancel)
 
         # 设置主布局
-        self.viewLayout.setContentsMargins(16, 16, 16, 16) # 左、上、右、下
+        self.viewLayout.setContentsMargins(16, 16, 16, 16)  # 左、上、右、下
 
         # 标题
         self.title_label = StrongBodyLabel(title, self)
@@ -83,7 +83,7 @@ class TranslationPage(QWidget, Base):
         # 设置主容器
         self.container = QVBoxLayout(self)
         self.container.setSpacing(8)
-        self.container.setContentsMargins(24, 24, 24, 24) # 左、上、右、下
+        self.container.setContentsMargins(24, 24, 24, 24)  # 左、上、右、下
 
         # 添加控件
         self.add_widget_head(self.container, config, window)
@@ -323,7 +323,7 @@ class TranslationPage(QWidget, Base):
     # 中部
     def add_widget_body(self, parent: QLayout, config: dict, window: FluentWindow) -> None:
         self.flow_container = QWidget(self)
-        self.flow_layout = FlowLayout(self.flow_container, needAni = False)
+        self.flow_layout = FlowLayout(self.flow_container, needAni=False)
         self.flow_layout.setSpacing(8)
         self.flow_layout.setContentsMargins(0, 0, 0, 0)
 
@@ -345,6 +345,7 @@ class TranslationPage(QWidget, Base):
         # 添加命令
         self.command_bar_card.set_minimum_width(640)
         self.add_command_bar_action_start(self.command_bar_card, config, window)
+        self.add_command_bar_action_pause(self.command_bar_card, config, window)  # Add pause action
         self.add_command_bar_action_stop(self.command_bar_card, config, window)
         self.command_bar_card.add_separator()
         self.add_command_bar_action_continue(self.command_bar_card, config, window)
@@ -370,70 +371,70 @@ class TranslationPage(QWidget, Base):
     # 累计时间
     def add_time_card(self, parent: QLayout, config: dict, window: FluentWindow) -> None:
         self.time = DashboardCard(
-                title = Localizer.get().translation_page_card_time,
-                value = Localizer.get().none,
-                unit = "",
-            )
+            title=Localizer.get().translation_page_card_time,
+            value=Localizer.get().none,
+            unit="",
+        )
         self.time.setFixedSize(204, 204)
         parent.addWidget(self.time)
 
     # 剩余时间
     def add_remaining_time_card(self, parent: QLayout, config: dict, window: FluentWindow) -> None:
         self.remaining_time = DashboardCard(
-                title = Localizer.get().translation_page_card_remaining_time,
-                value = Localizer.get().none,
-                unit = "",
-            )
+            title=Localizer.get().translation_page_card_remaining_time,
+            value=Localizer.get().none,
+            unit="",
+        )
         self.remaining_time.setFixedSize(204, 204)
         parent.addWidget(self.remaining_time)
 
     # 翻译行数
     def add_line_card(self, parent: QLayout, config: dict, window: FluentWindow) -> None:
         self.line_card = DashboardCard(
-                title = Localizer.get().translation_page_card_line,
-                value = Localizer.get().none,
-                unit = "",
-            )
+            title=Localizer.get().translation_page_card_line,
+            value=Localizer.get().none,
+            unit="",
+        )
         self.line_card.setFixedSize(204, 204)
         parent.addWidget(self.line_card)
 
     # 剩余行数
     def add_remaining_line_card(self, parent: QLayout, config: dict, window: FluentWindow) -> None:
         self.remaining_line = DashboardCard(
-                title = Localizer.get().translation_page_card_remaining_line,
-                value = Localizer.get().none,
-                unit = "",
-            )
+            title=Localizer.get().translation_page_card_remaining_line,
+            value=Localizer.get().none,
+            unit="",
+        )
         self.remaining_line.setFixedSize(204, 204)
         parent.addWidget(self.remaining_line)
 
     # 平均速度
     def add_speed_card(self, parent: QLayout, config: dict, window: FluentWindow) -> None:
         self.speed = DashboardCard(
-                title = Localizer.get().translation_page_card_speed,
-                value = Localizer.get().none,
-                unit = "",
-            )
+            title=Localizer.get().translation_page_card_speed,
+            value=Localizer.get().none,
+            unit="",
+        )
         self.speed.setFixedSize(204, 204)
         parent.addWidget(self.speed)
 
     # 累计消耗
     def add_token_card(self, parent: QLayout, config: dict, window: FluentWindow) -> None:
         self.token = DashboardCard(
-                title = Localizer.get().translation_page_card_token,
-                value = Localizer.get().none,
-                unit = "",
-            )
+            title=Localizer.get().translation_page_card_token,
+            value=Localizer.get().none,
+            unit="",
+        )
         self.token.setFixedSize(204, 204)
         parent.addWidget(self.token)
 
     # 并行任务
     def add_task_card(self, parent: QLayout, config: dict, window: FluentWindow) -> None:
         self.task = DashboardCard(
-                title = Localizer.get().translation_page_card_task,
-                value = Localizer.get().none,
-                unit = "",
-            )
+            title=Localizer.get().translation_page_card_task,
+            value=Localizer.get().none,
+            unit="",
+        )
         self.task.setFixedSize(204, 204)
         parent.addWidget(self.task)
 
@@ -454,8 +455,94 @@ class TranslationPage(QWidget, Base):
             })
 
         self.action_start = parent.add_action(
-            Action(FluentIcon.PLAY, Localizer.get().start, parent, triggered = triggered)
+            Action(FluentIcon.PLAY, Localizer.get().start, parent, triggered=triggered)
         )
+
+    # 暂停
+    def add_command_bar_action_pause(self, parent: CommandBarCard, config: dict, window: FluentWindow) -> None:
+        """
+        Adds a pause action to the command bar.
+        Allows the user to set a pause duration and pause the translation operation in a loop until the task is finished.
+        """
+        pause_duration = None  # Stores the pause duration in seconds
+        pause_start_time = None  # Stores the time when the pause started
+        is_pause_loop_active = False  # Tracks whether the pause loop is active
+
+        def format_time(seconds: int) -> str:
+            """Formats time in seconds to HH:MM:SS."""
+            hours = seconds // 3600
+            minutes = (seconds % 3600) // 60
+            seconds = seconds % 60
+            return f"{hours:02}:{minutes:02}:{seconds:02}"
+
+        def pause_timer_interval() -> None:
+            """
+            Timer callback to check if the pause duration has elapsed.
+            If the pause is over, resumes the translation operation.
+            If the pause loop is active, it will pause again after the translation resumes.
+            """
+            nonlocal pause_duration, pause_start_time, is_pause_loop_active
+
+            if pause_start_time is not None and pause_duration is not None:
+                elapsed_time = time.time() - pause_start_time
+                if elapsed_time >= pause_duration:
+                    # Pause is over, resume translation
+                    self.emit(Base.Event.TRANSLATION_START, {
+                        "status": Base.TranslationStatus.TRANSLATING,
+                    })
+                    pause_start_time = None
+                    self.action_pause.setText(Localizer.get().pause)  # Reset button text
+
+                    # If the pause loop is active, pause again after resuming
+                    if is_pause_loop_active and Base.WORK_STATUS == Base.Status.TRANSLATING:
+                        self.emit(Base.Event.TRANSLATION_STOP, {})
+                        pause_start_time = time.time()
+                        self.action_pause.setText(format_time(pause_duration))  # Update button text
+
+        def triggered() -> None:
+            """
+            Triggered when the pause button is clicked.
+            Opens a dialog to set the pause duration and pauses the translation operation.
+            If the pause loop is active, it will repeatedly pause and resume the translation.
+            """
+            nonlocal pause_duration, pause_start_time, is_pause_loop_active
+
+            if pause_start_time is not None:
+                # If already paused, do nothing
+                return
+
+            # Open a dialog to set the pause duration
+            pause_dialog = TimerMessageBox(
+                parent=window,
+                title=Localizer.get().translation_page_pause_title,
+                message_box_close=lambda widget, input_time: set_pause_duration(input_time),
+            )
+            if pause_dialog.exec():
+                # Enable the pause loop
+                is_pause_loop_active = True
+
+                # Pause the translation operation
+                self.emit(Base.Event.TRANSLATION_STOP, {})
+                pause_start_time = time.time()
+                self.action_pause.setText(format_time(pause_duration))  # Update button text
+
+        def set_pause_duration(input_time: QTime) -> None:
+            """
+            Sets the pause duration based on user input.
+            """
+            nonlocal pause_duration
+            pause_duration = input_time.hour() * 3600 + input_time.minute() * 60 + input_time.second()
+
+        # Add the pause action to the command bar
+        self.action_pause = parent.add_action(
+            Action(FluentIcon.PAUSE, Localizer.get().pause, parent, triggered=triggered),
+        )
+
+        # Start a timer to check the pause duration
+        pause_timer = QTimer(self)
+        pause_timer.setInterval(1000)  # Check every second
+        pause_timer.timeout.connect(pause_timer_interval)
+        pause_timer.start()
 
     # 停止
     def add_command_bar_action_stop(self, parent: CommandBarCard, config: dict, window: FluentWindow) -> None:
@@ -470,20 +557,19 @@ class TranslationPage(QWidget, Base):
                 self.emit(Base.Event.TRANSLATION_STOP, {})
 
         self.action_stop = parent.add_action(
-            Action(FluentIcon.CANCEL_MEDIUM, Localizer.get().stop, parent,  triggered = triggered),
+            Action(FluentIcon.CANCEL_MEDIUM, Localizer.get().stop, parent, triggered=triggered),
         )
         self.action_stop.setEnabled(False)
 
     # 继续翻译
     def add_command_bar_action_continue(self, parent: CommandBarCard, config: dict, window: FluentWindow) -> None:
-
         def triggered() -> None:
             self.emit(Base.Event.TRANSLATION_START, {
                 "status": Base.TranslationStatus.TRANSLATING,
             })
 
         self.action_continue = parent.add_action(
-            Action(FluentIcon.ROTATE, Localizer.get().translation_page_continue, parent, triggered = triggered),
+            Action(FluentIcon.ROTATE, Localizer.get().translation_page_continue, parent, triggered=triggered),
         )
         self.action_continue.setEnabled(False)
 
@@ -497,13 +583,12 @@ class TranslationPage(QWidget, Base):
             })
 
         self.action_export = parent.add_action(
-            Action(FluentIcon.SHARE, Localizer.get().translation_page_export, parent, triggered = triggered),
+            Action(FluentIcon.SHARE, Localizer.get().translation_page_export, parent, triggered=triggered),
         )
         self.action_export.setEnabled(False)
 
     # 定时器
     def add_command_bar_action_timer(self, parent: CommandBarCard, config: dict, window: FluentWindow) -> None:
-
         interval = 1
         delay_time = None
 
@@ -542,9 +627,9 @@ class TranslationPage(QWidget, Base):
 
             if not isinstance(delay_time, int):
                 TimerMessageBox(
-                    parent = window,
-                    title = Localizer.get().translation_page_timer,
-                    message_box_close = message_box_close,
+                    parent=window,
+                    title=Localizer.get().translation_page_timer,
+                    message_box_close=message_box_close,
                 ).exec()
             else:
                 message_box = MessageBox(Localizer.get().alert, Localizer.get().alert_reset_timer, window)
@@ -559,7 +644,7 @@ class TranslationPage(QWidget, Base):
                 self.action_timer.setText(Localizer.get().timer)
 
         self.action_timer = parent.add_action(
-            Action(FluentIcon.HISTORY, Localizer.get().timer, parent, triggered = triggered)
+            Action(FluentIcon.HISTORY, Localizer.get().timer, parent, triggered=triggered)
         )
 
         # 定时检查

@@ -27,7 +27,7 @@ class TranslatorTask(Base):
     # 类变量
     OPENCCS2T = opencc.OpenCC("s2t")
     OPENCCT2S = opencc.OpenCC("t2s")
-    CONSOLE = Console(highlight = True, tab_size = 4)
+    CONSOLE = Console(highlight=True, tab_size=4)
 
     # 类线程锁
     LOCK = threading.Lock()
@@ -74,10 +74,26 @@ class TranslatorTask(Base):
 
         # 检测是否需要停止任务
         if Base.WORK_STATUS == Base.Status.STOPPING:
+            self.emit(Base.Event.TRANSLATION_UPDATE, {
+                "status": Base.TranslationStatus.STOPPED,
+                "start_time": start_time,
+                "line": 0,
+                "total_line": len(src_dict),
+                "token": 0,
+                "total_completion_tokens": 0,
+            })
             return {}
 
         # 检查是否超时，超时则直接跳过当前任务，以避免死循环
         if time.time() - start_time >= self.config.get("request_timeout"):
+            self.emit(Base.Event.TRANSLATION_UPDATE, {
+                "status": Base.TranslationStatus.TIMEOUT,
+                "start_time": start_time,
+                "line": 0,
+                "total_line": len(src_dict),
+                "token": 0,
+                "total_completion_tokens": 0,
+            })
             return {}
 
         # 生成请求提示词
@@ -92,6 +108,14 @@ class TranslatorTask(Base):
 
         # 如果请求结果标记为 skip，即有错误发生，则跳过本次循环
         if skip == True:
+            self.emit(Base.Event.TRANSLATION_UPDATE, {
+                "status": Base.TranslationStatus.FAILED,
+                "start_time": start_time,
+                "line": 0,
+                "total_line": len(src_dict),
+                "token": 0,
+                "total_completion_tokens": 0,
+            })
             return {
                 "check_flag": ResponseChecker.Error.UNKNOWN,
                 "row_count": 0,
@@ -170,6 +194,14 @@ class TranslatorTask(Base):
 
         # 返回任务结果
         if check_flag in (None, ResponseChecker.Error.DEGRADATION, ResponseChecker.Error.SIMILARITY):
+            self.emit(Base.Event.TRANSLATION_UPDATE, {
+                "status": Base.TranslationStatus.TRANSLATING,
+                "start_time": start_time,
+                "line": updated_count,
+                "total_line": len(src_dict),
+                "token": prompt_tokens + completion_tokens,
+                "total_completion_tokens": completion_tokens,
+            })
             return {
                 "check_flag": None,
                 "row_count": updated_count,
@@ -177,6 +209,14 @@ class TranslatorTask(Base):
                 "completion_tokens": completion_tokens,
             }
         else:
+            self.emit(Base.Event.TRANSLATION_UPDATE, {
+                "status": Base.TranslationStatus.FAILED,
+                "start_time": start_time,
+                "line": updated_count,
+                "total_line": len(src_dict),
+                "token": prompt_tokens + completion_tokens,
+                "total_completion_tokens": completion_tokens,
+            })
             return {
                 "check_flag": check_flag,
                 "row_count": 0,
@@ -211,8 +251,8 @@ class TranslatorTask(Base):
                 continue
 
             # 将原文和译文都按标点切分
-            srcs = TextHelper.split_by_punctuation(src, split_by_space = False)
-            dsts = TextHelper.split_by_punctuation(dst, split_by_space = False)
+            srcs = TextHelper.split_by_punctuation(src, split_by_space=False)
+            dsts = TextHelper.split_by_punctuation(dst, split_by_space=False)
             if len(srcs) != len(dsts):
                 if src == dst:
                     continue
@@ -318,7 +358,7 @@ class TranslatorTask(Base):
             "content": (
                 f"{main}"
                 + "\n" + "原文文本："
-                + "\n" + json.dumps(src_dict, indent = None, ensure_ascii = False)
+                + "\n" + json.dumps(src_dict, indent=None, ensure_ascii=False)
             ),
         })
 
@@ -417,19 +457,19 @@ class TranslatorTask(Base):
         console_log.insert(0, message)
 
         # 写入日志到文件
-        file_rows = self.generate_log_rows(srcs, dsts, file_log, highlight = False)
-        log_func("\n" + "\n\n".join(file_rows) + "\n", file = True, console = False)
+        file_rows = self.generate_log_rows(srcs, dsts, file_log, highlight=False)
+        log_func("\n" + "\n\n".join(file_rows) + "\n", file=True, console=False)
 
         # 根据线程数判断是否需要打印表格
         task_num = sum(1 for t in threading.enumerate() if "translator" in t.name)
         if task_num > 32:
             log_func(
                 Localizer.get().translator_too_many_task + "\n" + message + "\n",
-                file = False,
-                console = True,
+                file=False,
+                console=True,
             )
         else:
-            console_rows = self.generate_log_rows(srcs, dsts, console_log, highlight = True)
+            console_rows = self.generate_log_rows(srcs, dsts, console_log, highlight=True)
             TranslatorTask.CONSOLE.print(self.generate_log_table(console_rows, style))
 
     # 生成日志行
@@ -442,7 +482,7 @@ class TranslatorTask(Base):
 
         # 原文译文对比
         pair = ""
-        for src, dst in itertools.zip_longest(srcs, dsts, fillvalue = ""):
+        for src, dst in itertools.zip_longest(srcs, dsts, fillvalue=""):
             if highlight == False:
                 pair = pair + "\n" + f"{src} --> {dst}"
             else:
@@ -454,18 +494,18 @@ class TranslatorTask(Base):
     # 生成日志表格
     def generate_log_table(self, rows: list, style: str) -> Table:
         table = Table(
-            box = box.ASCII2,
-            expand = True,
-            title = " ",
-            caption = " ",
-            highlight = True,
-            show_lines = True,
-            show_header = False,
-            show_footer = False,
-            collapse_padding = True,
-            border_style = style,
+            box=box.ASCII2,
+            expand=True,
+            title=" ",
+            caption=" ",
+            highlight=True,
+            show_lines=True,
+            show_header=False,
+            show_footer=False,
+            collapse_padding=True,
+            border_style=style,
         )
-        table.add_column("", style = "white", ratio = 1, overflow = "fold")
+        table.add_column("", style="white", ratio=1, overflow="fold")
 
         for row in rows:
             if isinstance(row, str):
