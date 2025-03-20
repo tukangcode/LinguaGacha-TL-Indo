@@ -351,68 +351,68 @@ class LocalizerEN(LocalizerBase):
 
     # 自定义提示词 - 英文
     custom_prompt_en_page_head = "Custom prompt used when target language is set to non-Chinese languages (SakuraLLM model not supported)"
-    custom_prompt_en_page_head_desc = (
-        "Add extra translation requirements such as story settings and writing styles via custom prompts."
-        "<br>"
-        "Note: The prefix and suffix are fixed and cannot be modified."
-        "<br>"
-        "The custom prompts on this page will only be used when the <font color='darkgoldenrod'><b>translation language is set to non-Chinese</b></font>."
-    )
-    custom_prompt_en_page_save = "Save"
-    custom_prompt_en_page_save_toast = "Data saved ..."
-    custom_prompt_en_page_reset = "Reset"
-    custom_prompt_en_page_reset_toast = "Data reset ..."
-    custom_prompt_en_page_reset_alert = "Confirm reset to default data ... ?"
+    custom_prompt_en_page_head_desc  =  ( 
+        "Add extra translation requirements such as story settings and writing styles via custom prompts." 
+        "<br>" 
+        "Note: The prefix and suffix are fixed and cannot be modified." 
+        "<br>" 
+        "The custom prompts on this page will only be used when the <font color='darkgoldenrod'><b>translation language is set to non-Chinese</b></font>." 
+    ) 
+    custom_prompt_en_page_save  =  "Save" 
+    custom_prompt_en_page_save_toast  =  "Data saved ..." 
+    custom_prompt_en_page_reset  =  "Reset" 
+    custom_prompt_en_page_reset_toast  =  "Data reset ..." 
+    custom_prompt_en_page_reset_alert  =  "Confirm reset to default data ... ?" 
 
-    # 百宝箱
-    tool_box_page_re_translation = "Partial Re-Translation"
-    tool_box_page_re_translation_desc = "Re-translate parts of already translated text based on set filters, mainly for content updates or error correction."
-    tool_box_page_name_injection = "Name Injection"
-    tool_box_page_name_injection_desc = "Extract, deduplicate, translate, and inject name fields from <font color='darkgoldenrod'><b>RenPy</b></font> and <font color='darkgoldenrod'><b>GalGame</b></font> game texts for consistent naming."
+    # 百宝箱 
+    tool_box_page_re_translation  =  "Partial Re-Translation" 
+    tool_box_page_re_translation_desc  =  "Re-translate parts of already translated text based on set filters, mainly for content updates or error correction." 
+    tool_box_page_name_injection  =  "Name Injection" 
+    tool_box_page_name_injection_desc  =  "Extract, deduplicate, translate, and inject name fields from <font color='darkgoldenrod'><b>RenPy</b></font> and <font color='darkgoldenrod'><b>GalGame</b></font> game texts for consistent naming." 
 
-    # 百宝箱 - 部分重翻
-    re_translation_page = "Partial Re-Translation"
-    re_translation_page_desc = (
-        "Will filter the text in the <font color='darkgoldenrod'><b>Input Folder</b></font> based on the set filter conditions, and then retranslate the text that meets the conditions."
-        "<br>"
-        "Workflow:"
-        "<br>"
-        "• Load the original and translated texts from the <font color='darkgoldenrod'><b>src</b></font> and <font color='darkgoldenrod'><b>dst</b></font> subdirectories of the <font color='darkgoldenrod'><b>Input Folder</b></font>."
-        "<br>"
-        "• The filenames and file contents of the original and translated files must correspond strictly one-to-one."
-        "<br>"
-        "• Filter out the text that needs to be retranslated according to the settings on this page, translate it according to the normal process."
-    )
-    re_translation_page_white_list = "Keywords - Whitelist"
-    re_translation_page_white_list_desc = (
-        "Text containing these keywords will be retranslated. You can enter multiple keywords, one per line."
-        "\n"
-        "Hitting one of them is enough to determine that the text needs to be retranslated."
-    )
-    re_translation_page_white_list_placeholder = "Please enter keywords ..."
-    re_translation_page_alert_not_equal = "The number of lines in the original and translated texts does not match ..."
+    # 百宝箱 - 部分重翻 
+    re_translation_page  =  "Partial Re-Translation" 
+    re_translation_page_desc  =  ( 
+        "Will filter the text in the <font color='darkgoldenrod'><b>Input Folder</b></font> based on the set filter conditions, and then retranslate the text that meets the conditions." 
+        "<br>" 
+        "Workflow:" 
+        "<br>" 
+        "• Load the original and translated texts from the <font color='darkgoldenrod'><b>src</b></font> and <font color='darkgoldenrod'><b>dst</b></font> subdirectories of the <font color='darkgoldenrod'><b>Input Folder</b></font>." 
+        "<br>" 
+        "• The filenames and file contents of the original and translated files must correspond strictly one-to-one." 
+        "<br>" 
+        "• Filter out the text that needs to be retranslated according to the settings on this page, translate it according to the normal process." 
+    ) 
+    re_translation_page_white_list  =  "Keywords - Whitelist" 
+    re_translation_page_white_list_desc  =  ( 
+        "Text containing these keywords will be retranslated. You can enter multiple keywords, one per line." 
+        "\n" 
+        "Hitting one of them is enough to determine that the text needs to be retranslated." 
+    ) 
+    re_translation_page_white_list_placeholder  =  "Please enter keywords ..." 
+    re_translation_page_alert_not_equal  =  "The number of lines in the original and translated texts does not match ..." 
 
-    # 百宝箱 - 角色姓名注入
-    name_injection_page = "Name Injection"
-    name_injection_page_desc = (
-        "Extract, translate, and inject name fields from eligible files in the <font color='darkgoldenrod'><b>Input Folder</b></font>."
-        "<br>"
-        "Supported formats: RenPy export game text (.rpy), VNTextPatch or SExtractor export game text with name field (.json)"
-    )
-    name_injection_page_step_01 = "Step 1 - Extract & Translate"
-    name_injection_page_step_01_desc = (
-        "Extract name fields and related context, then translate."
-        "<br>"
-        "The translated data will be in <font color='darkgoldenrod'><b>Output Folder/name_injection/result.xlsx</b></font>."
-    )
-    name_injection_page_step_02 = "Step 2 - Organize & Inject"
-    name_injection_page_step_02_desc = (
-        "Check and correct the translated name data in the result file, <font color='darkgoldenrod'><b>close</b></font> it, and start injection."
-        "<br>"
-        "Note:"
-        "<br>"
-        "• Only text <font color='darkgoldenrod'><b>wrapped in 【】 will be injected</b></font>."
-        "<br>"
-        "• Game text for injection is read from <font color='darkgoldenrod'><b>Input Folder</b></font>, and the injected text is saved in <font color='darkgoldenrod'><b>Output Folder</b></font>."
-    )
-    name_injection_page_success = "Name data injected successfully ..."
+    # 百宝箱 - 角色姓名注入 
+    name_injection_page  =  "Name Injection" 
+    name_injection_page_desc  =  ( 
+        "Extract, translate, and inject name fields from eligible files in the <font color='darkgoldenrod'><b>Input Folder</b></font>." 
+        "<br>" 
+        "Supported formats: RenPy export game text (.rpy), VNTextPatch or SExtractor export game text with name field (.json)" 
+    ) 
+    name_injection_page_step_01  =  "Step 1 - Extract & Translate" 
+    name_injection_page_step_01_desc  =  ( 
+        "Extract name fields and related context, then translate." 
+        "<br>" 
+        "The translated data will be in <font color='darkgoldenrod'><b>Output Folder/name_injection/result.xlsx</b></font>." 
+    ) 
+    name_injection_page_step_02  =  "Step 2 - Organize & Inject" 
+    name_injection_page_step_02_desc  =  ( 
+        "Check and correct the translated name data in the result file, <font color='darkgoldenrod'><b>close</b></font> it, and start injection." 
+        "<br>" 
+        "Note:" 
+        "<br>" 
+        "• Only text <font color='darkgoldenrod'><b>wrapped in 【】 will be injected</b></font>." 
+        "<br>" 
+        "• Game text for injection is read from <font color='darkgoldenrod'><b>Input Folder</b></font>, and the injected text is saved in <font color='darkgoldenrod'><b>Output Folder</b></font>." 
+    ) 
+    name_injection_page_success  =  "Name data injected successfully ..."
