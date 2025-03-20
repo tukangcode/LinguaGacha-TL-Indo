@@ -73,6 +73,14 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250320 v0.16.2
+  - OPT - Translation Quality Optimization
+    - Default prompt optimization
+    - Basically resolved the residual issue of `Kana` and `Hangul` modal particles
+  - OPT - Contextual Reference Retrieval Logic Optimization
+    - Can retrieve more lines now
+    - Also effective when using the [Partial ReTranslation](https://github.com/neavo/LinguaGacha/wiki/ReTranslation-%E2%80%90-EN) feature
+
 - 20250319 v0.16.1
   - ADD - [Expert Settings](https://github.com/neavo/LinguaGacha/wiki/ExpertConfig-%E2%80%90-EN)
     - Preceding lines threshold
@@ -83,19 +91,12 @@
 
 - 20250318 v0.16.0
   - Added - Timer feature
-  - Adjusted - [Character Name Injection](https://github.com/neavo/LinguaGacha/wiki/NameInjection) compatibility optimization
+  - Adjusted - [Character Name Injection](https://github.com/neavo/LinguaGacha/wiki/NameInjection-%E2%80%90-EN) compatibility optimization
 
 - 20250317 v0.15.0
-  - ADD - [Incremental Translation](https://github.com/neavo/LinguaGacha/wiki/IncrementalTranslation)
-  - ADD - [Character Name Injection](https://github.com/neavo/LinguaGacha/wiki/NameInjection)
-  - OPT - [Partial ReTranslation](https://github.com/neavo/LinguaGacha/wiki/ReTranslation) supports all formats
-
-- 20250316 v0.14.0
-  - Translation Quality Focus Release
-    - ADD - Result check now detects residual `Kana` and `Hangul`
-    - OPT - Further enhanced code preservation
-    - OPT - Significantly improved translation quality, especially for interjections and proper nouns
-      - Highly recommended for all Volcengine DeepSeek users
+  - ADD - [Incremental Translation](https://github.com/neavo/LinguaGacha/wiki/IncrementalTranslation-%E2%80%90-EN)
+  - ADD - [Character Name Injection](https://github.com/neavo/LinguaGacha/wiki/NameInjection-%E2%80%90-EN)
+  - OPT - [Partial ReTranslation](https://github.com/neavo/LinguaGacha/wiki/ReTranslation-%E2%80%90-EN) supports all formats
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)

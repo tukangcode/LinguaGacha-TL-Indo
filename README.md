@@ -70,6 +70,14 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250320 v0.16.2
+  - 调整 - 翻译质量优化
+    - 默认提示词优化
+    - 基本解决了 `假名`、`谚文` 语气词的残留问题
+  - 调整 - 参考上文获取逻辑优化
+    - 可以获取更多行了
+    - 使用 [部分重翻](https://github.com/neavo/LinguaGacha/wiki/ReTranslation) 功能时也可以生效了
+
 - 20250319 v0.16.1
   - 新增 - [专家设置](https://github.com/neavo/LinguaGacha/wiki/ExpertConfig)
     - 参考上文行数阈值
@@ -86,13 +94,6 @@
   - 新增 - [增量翻译](https://github.com/neavo/LinguaGacha/wiki/IncrementalTranslation) 功能
   - 新增 - [角色姓名注入](https://github.com/neavo/LinguaGacha/wiki/NameInjection) 功能
   - 调整 - [部分重翻](https://github.com/neavo/LinguaGacha/wiki/ReTranslation) 功能支持全部格式
-
-- 20250316 v0.14.0
-  - 翻译质量提升专题版本
-    - 新增 - 结果检查增加 `假名`、`谚文` 的残留检查
-    - 调整 - 进一步提升了代码保留的能力
-    - 调整 - 显著提升了翻译质量，特别是语气词与专有名词的翻译
-      - 特别推荐所有火山引擎 DeepSeek 用户升级至此版本
 
 ## 常见问题 📥
 - [LinguaGacha](https://github.com/neavo/LinguaGacha) 与 [AiNiee](https://github.com/NEKOparapa/AiNiee) 的关系
