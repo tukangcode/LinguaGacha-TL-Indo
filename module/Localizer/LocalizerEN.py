@@ -1,7 +1,6 @@
 from module.Localizer.LocalizerBase import LocalizerBase
 
 class LocalizerEN(LocalizerBase):
-
     # 保留
     switch_language: str = (
         "请选择应用语言，新的语言设置将在下次启动时生效！"
