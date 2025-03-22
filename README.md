@@ -26,7 +26,7 @@
 - 最优的翻译质量，无论是 旗舰模型 `诸如 DeepSeek-R1` 还是 本地小模型　`诸如 Qwen2.5-7B`
 - 同类应用中最强的样式与代码保留能力，显著减少后期工作量，是制作内嵌汉化的最佳选择
   - `.md` `.ass` `.epub` 格式几乎可以保留所有原有样式
-  - `95%+` 的 `RenPy`、`RPGMaker`、`Kirikiri` 游戏实现零人工处理，即翻即玩　`👈👈 独家绝技`
+  - 大部分的 `WOLF`、`RenPy`、`RPGMaker`、`Kirikiri` 引擎游戏无需人工处理，即翻即玩　`👈👈 独家绝技`
 
 ## 配置要求 🖥️
 - 兼容 `OpenAI` `Google` `Anthropic` `SakuraLLM` 标准的 AI 大模型接口
@@ -72,6 +72,16 @@
 - 具体示例可见 [Wiki - 支持的文件格式](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)，更多格式将持续添加，你也可以在 [ISSUES](https://github.com/neavo/LinguaGacha/issues) 中提出你的需求
 
 ## 近期更新 📅
+- 20250322 v0.18.0
+  - 新增 - `WOLF` 引擎的 T++ 项目文件（.trans）相关规则
+    - 大部分 `WOLF` 引擎游戏可即翻即玩
+    - 存在少量漏翻情况
+    - 教程将稍后奉上
+  - 新增 - [专家设置](https://github.com/neavo/LinguaGacha/wiki/ExpertConfig) 双语输出文件中重复行去重
+  - 修正 - [部分重翻](https://github.com/neavo/LinguaGacha/wiki/ReTranslation)、[增量翻译](https://github.com/neavo/LinguaGacha/wiki/IncrementalTranslation) 时结果检查范围异常的问题
+  - **提醒** - 使用自动更新时，有时会提示 `updater.exe` 被占用
+    - 这是已知 BUG，不影响正常更新，无视它即可
+
 - 20250321 v0.17.0
   - 新增 - 匈牙利语 支持，感谢 @THEYAKUZI
   - 新增 - 自动更新 功能

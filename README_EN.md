@@ -30,7 +30,7 @@
 - Optimal translation quality, whether it's flagship models `such as DeepSeek-R1` or local small models `such as Qwen2.5-7B`
 - The strongest style and code retention capability among similar applications, significantly reducing post-processing workload, making it the best choice for creating embedded Chinese localization.
   - `.md` `.ass` `.epub` formats can almost retain all original styles.
-  - `95%+` of `RenPy`, `RPGMaker`, `Kirikiri` games achieve zero manual processing, allowing for instant playability. `👈👈 Exclusive Feature`
+  - Most `WOLF`, `RenPy`, `RPGMaker`, `Kirikiri` games require no manual processing, allowing for instant translation and play `👈👈 Exclusive Feature`
 
 ## System Requirements 🖥️
 - Compatible with AI model interfaces following `OpenAI`, `Google`, `Anthropic`, `SakuraLLM` standards
@@ -75,6 +75,16 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250322 v0.18.0
+  - ADD - Rules related to T++ project files (.trans) for the `WOLF` engine
+    - Most games using the `WOLF` engine can be translated and played immediately
+    - Minor untranslated instances may exist
+    - Tutorial will be available shortly
+  - ADD - Deduplicate repeated lines in bilingual output files for [Expert Settings](https://github.com/neavo/LinguaGacha/wiki/ExpertConfig-‐-EN)
+  - FIX - Issue with abnormal result checking scope during [Partial Re-translation](https://github.com/neavo/LinguaGacha/wiki/ReTranslation-‐-EN) and [Incremental Translation](https://github.com/neavo/LinguaGacha/wiki/IncrementalTranslation-‐-EN)
+  - **REMINDER** - When using auto-update, a prompt may sometimes appear indicating that `updater.exe` is in use.
+    - This is a known BUG and does not affect normal updates. Please ignore it.
+
 - 20250321 v0.17.0
   - ADD - Hungarian Language Support, Thanks to @THEYAKUZI
   - ADD - Auto Update Feature
