@@ -34,6 +34,10 @@ class VersionManager(Base):
     API_URL: str = "https://api.github.com/repos/neavo/LinguaGacha/releases/latest"
     RELEASE_URL: str = "https://github.com/neavo/LinguaGacha/releases/latest"
 
+    # 类变量
+    IN_EXTRACTING = False
+    LOCK = threading.Lock()
+
     def __init__(self, version: str) -> None:
         super().__init__()
 
@@ -61,10 +65,12 @@ class VersionManager(Base):
 
     # 检查更新 - 解压
     def app_update_extract(self, event: int, data: dict) -> None:
-        threading.Thread(
-            target = self.app_update_extract_task,
-            args = (event, data),
-        ).start()
+        with VersionManager.LOCK:
+            if VersionManager.IN_EXTRACTING == False:
+                threading.Thread(
+                    target = self.app_update_extract_task,
+                    args = (event, data),
+                ).start()
 
     # 检查更新
     def app_update_check_task(self, event: int, data: dict) -> None:
@@ -123,9 +129,27 @@ class VersionManager(Base):
 
     # 检查更新 - 解压
     def app_update_extract_task(self, event: int, data: dict) -> None:
+        # 更新状态
+        with VersionManager.LOCK:
+            VersionManager.IN_EXTRACTING = True
+
+        # 删除临时文件
+        try:
+            os.remove("./app.exe.bak")
+        except Exception:
+            pass
+        try:
+            os.remove("./version.txt.bak")
+        except Exception:
+            pass
+
         # 备份文件
         try:
             os.rename("./app.exe", "./app.exe.bak")
+        except Exception:
+            pass
+        try:
+            os.rename("./version.txt", "./version.txt.bak")
         except Exception:
             pass
 
@@ -143,17 +167,23 @@ class VersionManager(Base):
             self.error("", e)
 
         # 更新失败则还原备份文件
-        try:
-            if error is not None:
+        if error is not None:
+            try:
+                os.remove("./app.exe")
+            except Exception:
+                pass
+            try:
+                os.remove("./version.txt")
+            except Exception:
+                pass
+            try:
                 os.rename("./app.exe.bak", "./app.exe")
-        except Exception:
-            pass
-
-        # 删除临时文件
-        try:
-            os.remove("./app.exe.bak")
-        except Exception:
-            pass
+            except Exception:
+                pass
+            try:
+                os.rename("./version.txt.bak", "./version.txt")
+            except Exception:
+                pass
 
         # 删除临时文件
         try:
