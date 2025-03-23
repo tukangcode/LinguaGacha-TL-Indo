@@ -75,6 +75,12 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250323 v0.18.1
+  - Added - [Expert Settings](https://github.com/neavo/LinguaGacha/wiki/ExpertConfig-‐-EN) (Result check - retries reach threshold)
+  - Updated - [Translator++](https://dreamsavior.net/translator-plusplus) project file (.trans) translation rules updated
+    - Significantly reduced untranslated text in `WOLF` `RPGMaker` engine games
+  - Removed - `Forced Translation` attribute
+
 - 20250322 v0.18.0
   - ADD - Rules related to T++ project files (.trans) for the `WOLF` engine
     - Most games using the `WOLF` engine can be translated and played immediately
@@ -89,26 +95,6 @@
   - ADD - Hungarian Language Support, Thanks to @THEYAKUZI
   - ADD - Auto Update Feature
   - OPT - Result Check Execution Logic
-
-- 20250320 v0.16.2
-  - OPT - Translation Quality Optimization
-    - Default prompt optimization
-    - Basically resolved the residual issue of `Kana` and `Hangul` modal particles
-  - OPT - Contextual Reference Retrieval Logic Optimization
-    - Can retrieve more lines now
-    - Also effective when using the [Partial ReTranslation](https://github.com/neavo/LinguaGacha/wiki/ReTranslation-%E2%80%90-EN) feature
-
-- 20250319 v0.16.1
-  - ADD - [Expert Settings](https://github.com/neavo/LinguaGacha/wiki/ExpertConfig-%E2%80%90-EN)
-    - Preceding lines threshold
-  - ADD - Kana Residue Fix
-    - Mainly `Onomatopoeia`
-  - OPT - When translating .tran projects, set the `Force Translation` attribute for the `AQUA` tag
-    - `Force Translation` will skip all internal filter rule and do force translation
-
-- 20250318 v0.16.0
-  - Added - Timer feature
-  - Adjusted - [Character Name Injection](https://github.com/neavo/LinguaGacha/wiki/NameInjection-%E2%80%90-EN) compatibility optimization
 
 ## FAQ 📥
 - Relationship between [LinguaGacha](https://github.com/neavo/LinguaGacha) and [AiNiee](https://github.com/NEKOparapa/AiNiee)
