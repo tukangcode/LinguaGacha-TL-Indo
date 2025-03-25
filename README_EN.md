@@ -58,6 +58,7 @@
   - [Glossary](https://github.com/neavo/LinguaGacha/wiki/Glossary-%E2%80%90-EN)　　[Replacement](https://github.com/neavo/LinguaGacha/wiki/Replacement-%E2%80%90-EN)　　[Incremental Translation](https://github.com/neavo/LinguaGacha/wiki/IncrementalTranslation-%E2%80%90-EN)
   - [ReTranslation](https://github.com/neavo/LinguaGacha/wiki/ReTranslation-%E2%80%90-EN)　　[Expert Config](https://github.com/neavo/LinguaGacha/wiki/ExpertConfig-%E2%80%90-EN)　　[Name Injection](https://github.com/neavo/LinguaGacha/wiki/NameInjection-%E2%80%90-EN)
   - [MTool Optimizer](https://github.com/neavo/LinguaGacha/wiki/MToolOptimizer-%E2%80%90-EN)
+  - [Best Practices for High-Quality Translation of WOLF Engine Games](https://github.com/neavo/LinguaGacha/wiki/BestPracticeForWOLF-%E2%80%90-EN)
   - [Best Practices for High-Quality Translation of RPGMaker Series Engine Games](https://github.com/neavo/LinguaGacha/wiki/BestPracticeForRPGMaker-%E2%80%90-EN)
 - You can find more details on each feature in the [Wiki](https://github.com/neavo/LinguaGacha/wiki), and you are welcome to share your experience in the [Discussions](https://github.com/neavo/LinguaGacha/discussions)
 
@@ -75,11 +76,16 @@
 - See [Wiki - Supported Formats](https://github.com/neavo/LinguaGacha/wiki/%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F) for examples. Submit format requests via [ISSUES](https://github.com/neavo/LinguaGacha/issues)
 
 ## Recent Updates 📅
+- 20250325 v0.18.2
+  - ADD - Escape Fix rule
+  - OPT - [Translator++](https://dreamsavior.net/translator-plusplus) project file (.trans) translation rule update
+  - FIX - [Translator++](https://dreamsavior.net/translator-plusplus) project file (.trans) sometimes fails to export
+
 - 20250323 v0.18.1
-  - Added - [Expert Settings](https://github.com/neavo/LinguaGacha/wiki/ExpertConfig-‐-EN) (Result check - retries reach threshold)
-  - Updated - [Translator++](https://dreamsavior.net/translator-plusplus) project file (.trans) translation rules updated
+  - ADD - [Expert Settings](https://github.com/neavo/LinguaGacha/wiki/ExpertConfig-‐-EN) (Result check - retries reach threshold)
+  - OPT - [Translator++](https://dreamsavior.net/translator-plusplus) project file (.trans) translation rules updated
     - Significantly reduced untranslated text in `WOLF` `RPGMaker` engine games
-  - Removed - `Forced Translation` attribute
+  - OPT - `Forced Translation` attribute
 
 - 20250322 v0.18.0
   - ADD - Rules related to T++ project files (.trans) for the `WOLF` engine
@@ -105,7 +111,7 @@
   - Compared to `AiNiee v5`, which the author primarily developed, `LinguaGacha` has some unique advantages, including but not limited to:
     - Zero configuration; optimal translation quality and speed are achieved with all default settings
     - Better performance optimization; even with 512+ concurrent tasks, the computer won't lag, and the actual translation speed is faster
-    - Native support for `.rpy` and `.trans` project files, enabling instant play for most `RenPy` and `RPGMaker` games
+    - Native support for `.rpy` and `.trans`, most `WOLF`, `RenPy`, `RPGMaker`, and `Kirikiri` games can be translated and played instantly.
     - Better support for file formats, e.g.,  `.md` `.ass` `.epub` format can preserve almost all original styles
     - More complete pre-processing, post-processing, and result checking features
       - Significantly reducing the workload of proofreading to produce high-quality translations
